@@ -1,0 +1,17 @@
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\bin\Debug\E-Metro.exe.config
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\bin\Debug\E-Metro.exe
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\bin\Debug\E-Metro.pdb
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.csprojAssemblyReference.cache
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\MainWindow.g.cs
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\App.g.cs
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro_MarkupCompile.cache
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro_MarkupCompile.lref
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\MainWindow.baml
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.g.resources
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E_Metro.Properties.Resources.resources
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.csproj.GenerateResource.cache
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.csproj.CoreCompileInputs.cache
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.exe
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.pdb
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\DangNhap.g.cs
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\DangNhap.baml
