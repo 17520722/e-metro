@@ -15,24 +15,24 @@
             <TextBox x:Name="username_txt" 
                      Text="Tài khoản" FontFamily="Segoe UI" FontSize="16"  Background="#ffffffff" Foreground="#ff707070"
                      TextAlignment="left" VerticalContentAlignment="Center" 
-                     Width="332" Height="48" Canvas.Left="0" Canvas.Top="0" Padding="16 0 0 0" 
+                     Width="332" Height="48" Canvas.Left="0" Canvas.Top="0" Padding="16 0 0 0" BorderThickness="0"
                      GotFocus="username_GotFocus" LostFocus="username_LostFocus" TabIndex="0"/>
         </Canvas>
         <Canvas  Width="332" Height="48" Margin="474,421,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock x:Name="password_txb" Text="Mật khẩu" 
                      FontFamily="Segoe UI" FontSize="16" Background="#ffffffff" Foreground="#ff707070"
                      Height="48"  Width="332"
-                     Canvas.Left="0" Canvas.Top="0" Padding="16 10 0 0"/>
+                     Canvas.Left="0" Canvas.Top="0" Padding="16 12 0 0"/>
             <PasswordBox x:Name="password_txt" PasswordChar="*" 
                          FontFamily="Segoe UI" FontSize="16" Background="Transparent" Foreground="#ff707070"
                          VerticalContentAlignment="Center" 
-                         Width="332" Height="48" 
+                         Width="332" Height="48" BorderThickness="0"
                          Canvas.Left="0" Canvas.Top="0" Padding="16 0 0 0" 
                          GotFocus="passwordv2_GotFocus" LostFocus="passwordv2_LostFocus" TabIndex="1"></PasswordBox>
         </Canvas>
         <Canvas  Width="200" Height="48" Margin="540,500,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button x:Name="dangNhap" Content="Đăng nhập" 
-                    Width="200" Height="48" 
+                    Width="200" Height="48" BorderThickness="0"
                     Background="#ff50d0ff" Foreground="#ffffffff" FontSize="16" 
                     Click="dangNhap_Click" TabIndex="2"></Button>
         </Canvas>

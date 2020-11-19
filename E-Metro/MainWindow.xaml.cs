@@ -42,5 +42,29 @@ namespace E_Metro
         {
 
         }
+
+        private void quanLyCongTy_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            QuanLyCongTy quanLyCongTy = new QuanLyCongTy();          
+            quanLyCongTy.ShowDialog();
+            this.Show();
+        }
+
+        private void quanLyGaTau_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            QuanLyGaTau quanLyGaTau = new QuanLyGaTau();
+            quanLyGaTau.ShowDialog();
+            this.Show();
+        }
+
+        private void quanLyTuyenTau_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Hide();
+            QuanLyTuyenTau quanLyTuyenTau = new QuanLyTuyenTau();
+            quanLyTuyenTau.ShowDialog();
+            this.Show();
+        }
     }
 }

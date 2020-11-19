@@ -55,6 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="QuanLyCongTy.xaml.cs">
+      <DependentUpon>QuanLyCongTy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyGaTau.xaml.cs">
+      <DependentUpon>QuanLyGaTau.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QuanLyTuyenTau.xaml.cs">
+      <DependentUpon>QuanLyTuyenTau.xaml</DependentUpon>
+    </Compile>
     <Page Include="DangNhap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -74,6 +83,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="QuanLyCongTy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLyGaTau.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QuanLyTuyenTau.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -103,6 +124,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="assets\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="assets\chuaChinhSua.png" />
+    <Resource Include="assets\dangChinh.png" />
+    <Resource Include="assets\vuaChinhSua.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

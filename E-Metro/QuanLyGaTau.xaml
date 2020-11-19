@@ -1,0 +1,168 @@
+﻿<Window x:Class="E_Metro.QuanLyGaTau"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:E_Metro"
+        mc:Ignorable="d"
+        Title="QuanLyGaTau" Height="842.246" Width="1298.128" WindowState="Maximized">
+    <Grid Uid="QuanLyGaTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
+        <Image Source="/assets/back.png" Stretch="Fill"/>
+        <TabControl Background="Transparent" FontSize="16">
+            <TabItem Header="Thêm mới ga tàu" Width="425" Height="60" Background="Transparent">
+                <StackPanel>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 162 0 0">
+                        <TextBox x:Name="maGaTau_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Mã ga tàu" GotFocus="maGaTau_txt_GotFocus" LostFocus="maGaTau_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <TextBox x:Name="tenGaTau_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Tên ga tàu" GotFocus="tenGaTau_txt_GotFocus" LostFocus="tenGaTau_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0"  Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <TextBox x:Name="moTaViTri_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Mô tả vị trí" GotFocus="moTaViTri_txt_GotFocus" LostFocus="moTaViTri_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <ComboBox>
+                            <ComboBoxItem>
+                                Item1
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Item2
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <TextBox x:Name="lienKetSoDoGaTau_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Liên kết sơ đồ ga tàu" GotFocus="lienKetSoDoGaTau_txt_GotFocus" LostFocus="lienKetSoDoGaTau_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="200" Height="48" Background="#50D0FF" Margin="0 20 0 0">
+                        <Button x:Name="themGaTau_btn" FontSize="16" FontWeight="Bold"
+                        BorderBrush="#50D0FF"
+                        VerticalContentAlignment="Center"
+                        Foreground="White" Background="Transparent" Content="Thêm mới ga tàu"/>
+                    </Border>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Tra cứu ga tàu" Width="425" Height="60" Background="Transparent">
+                <StackPanel>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
+                            <TextBox x:Name="searchGaTau_txt" FontSize="16"
+                            BorderBrush="White"
+                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." FontStyle="Italic"/>
+                        </Border>
+                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                            <Image Source="/assets/search.png"/>
+                        </Button>
+                    </WrapPanel>
+                    <Grid Background="Transparent" Margin="0 16 0 0">
+                        <DataGrid x:Name="gaTau_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="2 2 2 2"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="42"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Height" Value="42"/>
+                                    <Setter Property="Background" Value="#EFE9E8"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" 
+                                                                      HorizontalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã số ga" Width="120" Binding="{Binding congTyId}"/>
+                                <DataGridTextColumn Header="Tên ga tàu" Width="360" Binding="{Binding tenCongTy}"/>
+                                <DataGridTextColumn Header="Mô tả vị trí" Width="360"  Binding="{Binding diaChiWeb}"/>
+                                <DataGridTextColumn Header="Tình trạng" Width="256" Binding="{Binding truSo}"/>
+                                <DataGridTextColumn Header="Liên kết sơ đồ ga tàu" Width="*" Binding="{Binding soDienThoai}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Cập nhật ga tàu" Width="425" Height="60" Background="Transparent">
+                <StackPanel>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
+                            <TextBox x:Name="searchGaTau2_txt" FontSize="16"
+                            BorderBrush="White"
+                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." FontStyle="Italic"/>
+                        </Border>
+                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                            <Image Source="/assets/search.png"/>
+                        </Button>
+                    </WrapPanel>
+                    <TextBlock FontSize="16" Foreground="White" FontStyle="Italic" Margin="20 0 0 0">Nhấp vào hình tròn tại cột sửa để sửa dữ liệu</TextBlock>
+                    <WrapPanel Margin="20 0 0 0">
+                        <Image Source="/assets/chuaChinhSua.png" Height="16"></Image>
+                        <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu không chỉnh sửa</TextBlock>
+                        <Image Source="/assets/dangChinh.png" Height="16" Margin="10 0 0 0"></Image>
+                        <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu đang chỉnh sửa</TextBlock>
+                        <Image Source="/assets/vuaChinhSua.png" Height="16" Margin="10 0 0 0"></Image>
+                        <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu vừa mới chỉnh sửa</TextBlock>
+                    </WrapPanel>
+                    <Grid Background="Transparent" Margin="0 16 0 0">
+                        <DataGrid x:Name="suaGaTau_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="2 2 2 2"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="42"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Height" Value="42"/>
+                                    <Setter Property="Background" Value="#EFE9E8"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" 
+                                                                      HorizontalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Sửa" Width="60"/>
+                                <DataGridTextColumn Header="Mã ga tàu" Width="120" Binding="{Binding congTyId}"/>
+                                <DataGridTextColumn Header="Tên ga tàu" Width="340" Binding="{Binding tenCongTy}"/>
+                                <DataGridTextColumn Header="Mô tả vị trí" Width="280"  Binding="{Binding diaChiWeb}"/>
+                                <DataGridTextColumn Header="Tình trạng" Width="256" Binding="{Binding truSo}"/>
+                                <DataGridTextColumn Header="Liên kết sơ đồ ga tàu" Width="*" Binding="{Binding soDienThoai}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

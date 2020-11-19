@@ -1,0 +1,164 @@
+﻿<Window x:Class="E_Metro.QuanLyCongTy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:E_Metro"
+        mc:Ignorable="d"
+        Title="QuanLyCongTy" Height="826" Width="1287.5" WindowState="Maximized">
+    <Grid Uid="QuanLyCongTy" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
+        <Image Source="/assets/back.png" Stretch="Fill"/>
+        <TabControl Background="Transparent" FontSize="16">
+            <TabItem Header="Thêm mới công ty" Width="425" Height="60" Background="Transparent">
+                <StackPanel>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 162 0 0">
+                        <TextBox x:Name="maCongTy_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Mã công ty" GotFocus="maCongTy_txt_GotFocus" LostFocus="maCongTy_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <TextBox x:Name="tenCongTy_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Tên công ty" GotFocus="tenCongTy_txt_GotFocus" LostFocus="tenCongTy_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0"  Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <TextBox x:Name="diaChiWeb_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Địa chỉ website" GotFocus="diaChiWeb_txt_GotFocus" LostFocus="diaChiWeb_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <TextBox x:Name="truSo_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Địa chỉ trụ sở chính" GotFocus="truSo_txt_GotFocus" LostFocus="truSo_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
+                        <TextBox x:Name="sdt_txt" FontSize="16"
+                        BorderBrush="White"
+                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                        Foreground="#ff707070" Background="Transparent" Text="Số điện thoại" GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus"/>
+                    </Border>
+                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="200" Height="48" Background="#50D0FF" Margin="0 20 0 0">
+                        <Button x:Name="themCongTy_btn" FontSize="16" FontWeight="Bold"
+                        BorderBrush="#50D0FF"
+                        VerticalContentAlignment="Center"
+                        Foreground="White" Background="Transparent" Content="Thêm mới công ty"/>
+                    </Border>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Tra cứu công ty" Width="425" Height="60" Background="Transparent">
+                <StackPanel>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
+                            <TextBox x:Name="searchCongTy_txt" FontSize="16"
+                            BorderBrush="White"
+                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
+                        </Border>
+                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                            <Image Source="/assets/search.png"/>
+                        </Button>
+                    </WrapPanel>
+                    <Grid Background="Transparent" Margin="0 16 0 0">
+                        <DataGrid x:Name="congTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="2 2 2 2"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="42"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Height" Value="42"/>
+                                    <Setter Property="Background" Value="#EFE9E8"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" 
+                                                                      HorizontalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Mã công ty" Width="120" Binding="{Binding congTyId}"/>
+                                <DataGridTextColumn Header="Tên công ty" Width="360" Binding="{Binding tenCongTy}"/>
+                                <DataGridTextColumn Header="Địa chỉ website" Width="360"  Binding="{Binding diaChiWeb}"/>
+                                <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding truSo}"/>
+                                <DataGridTextColumn Header="Số điện thoại" Width="*" Binding="{Binding soDienThoai}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Cập nhật công ty" Width="425" Height="60" Background="Transparent">
+                <StackPanel>
+                    <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
+                            <TextBox x:Name="searchCongTy2_txt" FontSize="16"
+                            BorderBrush="White"
+                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
+                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
+                        </Border>
+                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                            <Image Source="/assets/search.png"/>
+                        </Button>
+                    </WrapPanel>
+                    <TextBlock FontSize="16" Foreground="White" FontStyle="Italic" Margin="20 0 0 0">Nhấp vào hình tròn tại cột sửa để sửa dữ liệu</TextBlock>
+                    <WrapPanel Margin="20 0 0 0">
+                        <Image Source="/assets/chuaChinhSua.png" Height="16"></Image>
+                        <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu không chỉnh sửa</TextBlock>
+                        <Image Source="/assets/dangChinh.png" Height="16" Margin="10 0 0 0"></Image>
+                        <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu đang chỉnh sửa</TextBlock>
+                        <Image Source="/assets/vuaChinhSua.png" Height="16" Margin="10 0 0 0"></Image>
+                        <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu vừa mới chỉnh sửa</TextBlock>
+                    </WrapPanel>
+                    <Grid Background="Transparent" Margin="0 16 0 0">
+                        <DataGrid x:Name="suaCongTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center">
+                            <DataGrid.Resources>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="Background" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="White"/>
+                                    <Setter Property="BorderThickness" Value="2 2 2 2"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="42"/>
+                                </Style>
+                                <Style TargetType="{x:Type DataGridCell}">
+                                    <Setter Property="Height" Value="42"/>
+                                    <Setter Property="Background" Value="#EFE9E8"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                                <Grid Background="{TemplateBinding Background}">
+                                                    <ContentPresenter VerticalAlignment="Center" 
+                                                                      HorizontalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGrid.Resources>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Sửa" Width="60"/>
+                                <DataGridTextColumn Header="Mã công ty" Width="120" Binding="{Binding congTyId}"/>
+                                <DataGridTextColumn Header="Tên công ty" Width="340" Binding="{Binding tenCongTy}"/>
+                                <DataGridTextColumn Header="Địa chỉ website" Width="280"  Binding="{Binding diaChiWeb}"/>
+                                <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding truSo}"/>
+                                <DataGridTextColumn Header="Số điện thoại" Width="*" Binding="{Binding soDienThoai}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

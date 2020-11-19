@@ -15,3 +15,9 @@ D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.exe
 D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\E-Metro.pdb
 D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\DangNhap.g.cs
 D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\DangNhap.baml
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyCongTy.g.cs
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyCongTy.baml
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyGaTau.g.cs
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyGaTau.baml
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyTuyenTau.g.cs
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyTuyenTau.baml
