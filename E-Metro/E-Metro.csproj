@@ -64,6 +64,9 @@
     <Compile Include="QuanLyTuyenTau.xaml.cs">
       <DependentUpon>QuanLyTuyenTau.xaml</DependentUpon>
     </Compile>
+    <Compile Include="veTau.xaml.cs">
+      <DependentUpon>veTau.xaml</DependentUpon>
+    </Compile>
     <Page Include="DangNhap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +95,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuanLyTuyenTau.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="veTau.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

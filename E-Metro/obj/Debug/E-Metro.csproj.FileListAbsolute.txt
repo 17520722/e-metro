@@ -21,3 +21,5 @@ D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyGaTau.g.cs
 D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyGaTau.baml
 D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyTuyenTau.g.cs
 D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\QuanLyTuyenTau.baml
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\veTau.g.cs
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\veTau.baml

@@ -6,59 +6,56 @@
         xmlns:local="clr-namespace:E_Metro"
         mc:Ignorable="d"
         Title="QuanLyCongTy" Height="826" Width="1287.5" WindowState="Maximized">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330" />
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="#50D0FF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0 48 0 0"/>
+        </Style>
+    </Window.Resources>
     <Grid Uid="QuanLyCongTy" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <TabControl Background="Transparent" FontSize="16">
             <TabItem Header="Thêm mới công ty" Width="425" Height="60" Background="Transparent">
-                <StackPanel>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 162 0 0">
-                        <TextBox x:Name="maCongTy_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Mã công ty" GotFocus="maCongTy_txt_GotFocus" LostFocus="maCongTy_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <TextBox x:Name="tenCongTy_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Tên công ty" GotFocus="tenCongTy_txt_GotFocus" LostFocus="tenCongTy_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0"  Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <TextBox x:Name="diaChiWeb_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Địa chỉ website" GotFocus="diaChiWeb_txt_GotFocus" LostFocus="diaChiWeb_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <TextBox x:Name="truSo_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Địa chỉ trụ sở chính" GotFocus="truSo_txt_GotFocus" LostFocus="truSo_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <TextBox x:Name="sdt_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Số điện thoại" GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="200" Height="48" Background="#50D0FF" Margin="0 20 0 0">
-                        <Button x:Name="themCongTy_btn" FontSize="16" FontWeight="Bold"
-                        BorderBrush="#50D0FF"
-                        VerticalContentAlignment="Center"
-                        Foreground="White" Background="Transparent" Content="Thêm mới công ty"/>
-                    </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBox x:Name="maCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã công ty" GotFocus="maCongTy_txt_GotFocus" LostFocus="maCongTy_txt_LostFocus"/>
+                    <TextBox x:Name="tenCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên công ty" GotFocus="tenCongTy_txt_GotFocus" LostFocus="tenCongTy_txt_LostFocus"/>
+                    <TextBox x:Name="diaChiWeb_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Địa chỉ website" GotFocus="diaChiWeb_txt_GotFocus" LostFocus="diaChiWeb_txt_LostFocus"/>
+                    <TextBox x:Name="truSo_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Địa chỉ trụ sở chính" GotFocus="truSo_txt_GotFocus" LostFocus="truSo_txt_LostFocus"/>
+                    <TextBox x:Name="sdt_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số điện thoại" GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus"/>
+                    <Button x:Name="themCongTy_btn" Content="Thêm mới công ty">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Tra cứu công ty" Width="425" Height="60" Background="Transparent">
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
-                            <TextBox x:Name="searchCongTy_txt" FontSize="16"
-                            BorderBrush="White"
-                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
-                        </Border>
-                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                        <TextBox x:Name="searchCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
+                        <Button Background="Transparent" Width="36" Height="36" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
@@ -102,13 +99,8 @@
             <TabItem Header="Cập nhật công ty" Width="425" Height="60" Background="Transparent">
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
-                            <TextBox x:Name="searchCongTy2_txt" FontSize="16"
-                            BorderBrush="White"
-                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
-                        </Border>
-                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                        <TextBox x:Name="searchCongTy2_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
+                        <Button Background="Transparent" Width="48" Height="48" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>

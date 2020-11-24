@@ -6,63 +6,53 @@
         xmlns:local="clr-namespace:E_Metro"
         mc:Ignorable="d"
         Title="QuanLyGaTau" Height="842.246" Width="1298.128" WindowState="Maximized">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330" />
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="#50D0FF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0 48 0 0"/>
+        </Style>
+    </Window.Resources>
     <Grid Uid="QuanLyGaTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <TabControl Background="Transparent" FontSize="16">
             <TabItem Header="Thêm mới ga tàu" Width="425" Height="60" Background="Transparent">
-                <StackPanel>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 162 0 0">
-                        <TextBox x:Name="maGaTau_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Mã ga tàu" GotFocus="maGaTau_txt_GotFocus" LostFocus="maGaTau_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <TextBox x:Name="tenGaTau_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Tên ga tàu" GotFocus="tenGaTau_txt_GotFocus" LostFocus="tenGaTau_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0"  Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <TextBox x:Name="moTaViTri_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Mô tả vị trí" GotFocus="moTaViTri_txt_GotFocus" LostFocus="moTaViTri_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <ComboBox>
-                            <ComboBoxItem>
-                                Item1
-                            </ComboBoxItem>
-                            <ComboBoxItem>
-                                Item2
-                            </ComboBoxItem>
-                        </ComboBox>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                        <TextBox x:Name="lienKetSoDoGaTau_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Liên kết sơ đồ ga tàu" GotFocus="lienKetSoDoGaTau_txt_GotFocus" LostFocus="lienKetSoDoGaTau_txt_LostFocus"/>
-                    </Border>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="200" Height="48" Background="#50D0FF" Margin="0 20 0 0">
-                        <Button x:Name="themGaTau_btn" FontSize="16" FontWeight="Bold"
-                        BorderBrush="#50D0FF"
-                        VerticalContentAlignment="Center"
-                        Foreground="White" Background="Transparent" Content="Thêm mới ga tàu"/>
-                    </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBox x:Name="maGaTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã ga tàu" GotFocus="maGaTau_txt_GotFocus" LostFocus="maGaTau_txt_LostFocus"/>
+                    <TextBox x:Name="tenGaTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên ga tàu" GotFocus="tenGaTau_txt_GotFocus" LostFocus="tenGaTau_txt_LostFocus"/>
+                    <TextBox x:Name="moTaViTri_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mô tả vị trí" GotFocus="moTaViTri_txt_GotFocus" LostFocus="moTaViTri_txt_LostFocus"/>
+                    <ComboBox Width="330" Height="48" Margin="0 16 16 0" Background="White" Foreground="#ff707070">
+                        <ComboBoxItem Content="Item1"/>
+                        <ComboBoxItem Content="Item2"/>
+                    </ComboBox>
+                    <TextBox x:Name="lienKetSoDoGaTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Liên kết sơ đồ ga tàu" GotFocus="lienKetSoDoGaTau_txt_GotFocus" LostFocus="lienKetSoDoGaTau_txt_LostFocus"/>
+                        <Button x:Name="themGaTau_btn" Content="Thêm mới ga tàu"/>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Tra cứu ga tàu" Width="425" Height="60" Background="Transparent">
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
-                            <TextBox x:Name="searchGaTau_txt" FontSize="16"
-                            BorderBrush="White"
-                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." FontStyle="Italic"/>
-                        </Border>
-                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                        <TextBox x:Name="searchGaTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic"/>
+                        <Button Background="Transparent" Height="48" Width="48" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
@@ -106,13 +96,8 @@
             <TabItem Header="Cập nhật ga tàu" Width="425" Height="60" Background="Transparent">
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
-                            <TextBox x:Name="searchGaTau2_txt" FontSize="16"
-                            BorderBrush="White"
-                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." FontStyle="Italic"/>
-                        </Border>
-                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                        <TextBox x:Name="searchGaTau2_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic"/>                           
+                        <Button Background="Transparent" Height="48" Width="48" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>

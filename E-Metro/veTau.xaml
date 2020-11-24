@@ -1,0 +1,51 @@
+﻿<Window x:Class="E_Metro.veTau"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:E_Metro"
+        mc:Ignorable="d"
+        Title="veTau" Height="826.5" Width="1295">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330" />
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="#50D0FF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0 48 0 0"/>
+        </Style>
+    </Window.Resources>
+    <Grid Uid="veTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
+        <Image Source="/assets/back.png" Stretch="Fill"/>
+        <StackPanel VerticalAlignment="Center">
+            <TextBox x:Name="loaiVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại vé"/>
+            <TextBox x:Name="tuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tuyến"/>
+            <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
+            <TextBox x:Name="soLuongVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số lượng"/>
+            <Button x:Name="inVe_btn"  Content="In vé" Height="64" Width="142">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

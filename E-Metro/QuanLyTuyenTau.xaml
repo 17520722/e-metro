@@ -6,107 +6,77 @@
         xmlns:local="clr-namespace:E_Metro"
         mc:Ignorable="d"
         Title="QuanLyTuyenTau" Height="832.62" Width="1286.097" WindowState="Maximized">
+    <Window.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+        </ControlTemplate>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330" />
+            <Setter Property="TextAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Background" Value="#50D0FF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="0 48 0 0"/>
+        </Style>
+    </Window.Resources>
     <Grid Uid="QuanLyTuyenTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <TabControl Background="Transparent" FontSize="16">
-            <TabItem Header="Thêm mới ga tàu" Width="425" Height="60" Background="Transparent">
+            <TabItem Header="Thêm mới tuyến tàu" Width="425" Height="60" Background="Transparent">
                 <StackPanel VerticalAlignment="Center">
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="loaiTuyen_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Loại tuyến: Thường"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="tenCongTy_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Công ty TNHH MTV WAVI"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="loaiTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại tuyến: Thường"/>
+                        <TextBox x:Name="tenCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Công ty TNHH MTV WAVI"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="maTuyen_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Mã tuyến"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="tenTuyen_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Tên tuyến"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="maTuyen_txt"  Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã tuyến"/>
+                        <TextBox x:Name="tenTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên tuyến"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="gioBatDau_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Giờ băt đầu"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="gioKetThuc_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Giờ kết thúc"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="gioBatDau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ băt đầu"/>
+                        <TextBox x:Name="gioKetThuc_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ kết thúc"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="thoiGianCho_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Khoảng thời gian chờ"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="giaVe_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Giá vé"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="thoiGianCho_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Khoảng thời gian chờ"/>
+                        <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="gaDau_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Ga đầu"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="gaCuoi_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Ga cuối"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="gaDau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga đầu"/>
+                        <TextBox x:Name="gaCuoi_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga cuối"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="tinhTrang_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Tình trạng"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="tinhTrang_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tình trạng"/>
                     </WrapPanel>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="200" Height="48" Background="#50D0FF" Margin="0 40 0 0">
-                        <Button Content="Tiếp tục (1/2)" Background="Transparent" Foreground="White"></Button>
-                    </Border>
+                    <Button Content="Tiếp tục (1/2)">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
             </TabItem>
             <TabItem Header="Tra cứu tuyến tàu" Width="425" Height="60" Background="Transparent">
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBlock HorizontalAlignment="Left" Width="880" VerticalAlignment="Bottom" Foreground="White" FontStyle="Italic" Padding="10 0 0 0">
+                        <TextBlock HorizontalAlignment="Left" Width="800" VerticalAlignment="Bottom" Foreground="White" FontStyle="Italic" Padding="10 0 0 0">
                             Nhấp vào tuyến tàu để xem thông tin chi tiết
                         </TextBlock>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 0 8 0">
-                            <TextBox x:Name="searchTuyenTau_txt" FontSize="16"
-                            BorderBrush="White"
-                            VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                            Foreground="#ff707070" Background="Transparent" Text="Bạn cần gì..." FontStyle="Italic"/>
-                        </Border>
-                        <Button Background="Transparent" Height="36" Margin="0 0 16 0" BorderThickness="0">
+                        <TextBox x:Name="searchTuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" VerticalAlignment="Bottom"/>
+                        <Button Background="Transparent" Width="48" Height="48" Margin="0 0 16 0" VerticalAlignment="Bottom">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
@@ -151,87 +121,36 @@
             </TabItem>
             <TabItem Header="Cập nhật tuyến tàu" Width="425" Height="60" Background="Transparent">
                 <StackPanel VerticalAlignment="Center">
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="loaiTuyenUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Loại tuyến: Thường"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="tenCongTyUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Công ty TNHH MTV WAVI"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="loaiTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại tuyến: Thường"/>
+                        <TextBox x:Name="tenCongTyUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Công ty TNHH MTV WAVI"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="maTuyenUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Mã tuyến"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="tenTuyenUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Tên tuyến"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="maTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã tuyến"/>
+                        <TextBox x:Name="tenTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên tuyến"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="gioBatDauUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Giờ băt đầu"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="gioKetThucUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Giờ kết thúc"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="gioBatDauUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ băt đầu"/>
+                        <TextBox x:Name="gioKetThucUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ kết thúc"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="thoiGianChoUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Khoảng thời gian chờ"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="giaVeUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Giá vé"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="thoiGianChoUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Khoảng thời gian chờ"/>
+                        <TextBox x:Name="giaVeUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="gaDauUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Ga đầu"/>
-                        </Border>
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="20 10 0 0">
-                            <TextBox x:Name="gaCuoiUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Ga cuối"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="gaDauUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga đầu"/>
+                        <TextBox x:Name="gaCuoiUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga cuối"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 0 5">
-                        <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="330" Height="48" Background="White" Margin="0 10 0 0">
-                            <TextBox x:Name="tinhTrangUpdate_txt" FontSize="16"
-                        BorderBrush="White"
-                        VerticalContentAlignment="Center" TextAlignment="Left" Padding="16, 0, 0, 0"
-                        Foreground="#ff707070" Background="Transparent" Text="Tình trạng"/>
-                        </Border>
+                    <WrapPanel HorizontalAlignment="Center">
+                        <TextBox x:Name="tinhTrangUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tình trạng"/>
                     </WrapPanel>
-                    <Border CornerRadius="10" BorderThickness="0" Padding="5" Width="200" Height="48" Background="#50D0FF" Margin="0 40 0 0">
-                        <Button Content="Tiếp tục (1/2)" Background="Transparent" Foreground="White"></Button>
-                    </Border>
+                        <Button Content="Tiếp tục (1/2)">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
             </TabItem>
         </TabControl>
