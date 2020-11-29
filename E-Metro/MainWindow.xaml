@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Metro"
         mc:Ignorable="d"
+        DataContext="{StaticResource MainVM}"
         Title="MainWindow" Height="828" Width="1287.5" WindowState="Maximized">
     <Grid Uid="Main"  Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Canvas  Margin="0,0,1280,0">

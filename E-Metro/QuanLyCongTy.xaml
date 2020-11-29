@@ -4,8 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Metro"
+        xmlns:congTyViewModel="clr-namespace:E_Metro.ViewModel"
         mc:Ignorable="d"
         Title="QuanLyCongTy" Height="826" Width="1287.5" WindowState="Maximized">
+    <Window.DataContext>
+        <congTyViewModel:CongTyViewModel></congTyViewModel:CongTyViewModel>
+    </Window.DataContext>
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
@@ -36,13 +40,14 @@
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <TabControl Background="Transparent" FontSize="16">
             <TabItem Header="Thêm mới công ty" Width="425" Height="60" Background="Transparent">
-                <StackPanel VerticalAlignment="Center">
+                <StackPanel x:Name="themCongTy_stp" VerticalAlignment="Center">
                     <TextBox x:Name="maCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã công ty" GotFocus="maCongTy_txt_GotFocus" LostFocus="maCongTy_txt_LostFocus"/>
                     <TextBox x:Name="tenCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên công ty" GotFocus="tenCongTy_txt_GotFocus" LostFocus="tenCongTy_txt_LostFocus"/>
                     <TextBox x:Name="diaChiWeb_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Địa chỉ website" GotFocus="diaChiWeb_txt_GotFocus" LostFocus="diaChiWeb_txt_LostFocus"/>
                     <TextBox x:Name="truSo_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Địa chỉ trụ sở chính" GotFocus="truSo_txt_GotFocus" LostFocus="truSo_txt_LostFocus"/>
                     <TextBox x:Name="sdt_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số điện thoại" GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus"/>
-                    <Button x:Name="themCongTy_btn" Content="Thêm mới công ty">
+                    <Button x:Name="themCongTy_btn" Content="Thêm mới công ty" 
+                            Command="{Binding AddCommand}" CommandParameter="{Binding Children, ElementName=themCongTy_stp}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
@@ -53,14 +58,16 @@
             </TabItem>
             <TabItem Header="Tra cứu công ty" Width="425" Height="60" Background="Transparent">
                 <StackPanel>
-                    <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBox x:Name="searchCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
-                        <Button Background="Transparent" Width="36" Height="36" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
+                    <WrapPanel x:Name="searchCongTy_wap" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <TextBox x:Name="searchCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" GotFocus="searchCongTy_txt_GotFocus" LostFocus="searchCongTy_txt_LostFocus"/>
+                        <Button Background="Transparent" Width="36" Height="36" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom" 
+                                Command="{Binding SearchCommand}" CommandParameter="{Binding Children, ElementName=searchCongTy_wap}">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
-                        <DataGrid x:Name="congTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center">
+                        <DataGrid x:Name="congTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center" 
+                                  IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListCongTy}">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -86,11 +93,11 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã công ty" Width="120" Binding="{Binding congTyId}"/>
-                                <DataGridTextColumn Header="Tên công ty" Width="360" Binding="{Binding tenCongTy}"/>
-                                <DataGridTextColumn Header="Địa chỉ website" Width="360"  Binding="{Binding diaChiWeb}"/>
-                                <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding truSo}"/>
-                                <DataGridTextColumn Header="Số điện thoại" Width="*" Binding="{Binding soDienThoai}"/>
+                                <DataGridTextColumn Header="Mã công ty" Width="120" Binding="{Binding MaCongTy}"/>
+                                <DataGridTextColumn Header="Tên công ty" Width="360" Binding="{Binding TenCongTy}"/>
+                                <DataGridTextColumn Header="Địa chỉ website" Width="360"  Binding="{Binding DiaChiWeb}"/>
+                                <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding DiaChiTruSo}"/>
+                                <DataGridTextColumn Header="Số điện thoại" Width="*" Binding="{Binding Sdt}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -98,9 +105,16 @@
             </TabItem>
             <TabItem Header="Cập nhật công ty" Width="425" Height="60" Background="Transparent">
                 <StackPanel>
-                    <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBox x:Name="searchCongTy2_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" FontStyle="Italic"/>
-                        <Button Background="Transparent" Width="48" Height="48" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
+                    <WrapPanel x:Name="searchCongTy2_wap" HorizontalAlignment="Right" Margin="0 10 0 0">
+                        <TextBox x:Name="searchCongTy2_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." 
+                                 GotFocus="searchCongTy2_txt_GotFocus" LostFocus="searchCongTy2_txt_LostFocus" KeyUp="searchCongTy2_txt_KeyUp"
+                                 FontStyle="Italic">
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding SearchCommand}" CommandParameter="{Binding Children, ElementName=searchCongTy2_wap}" Key="Return"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
+                        <Button Background="Transparent" Width="36" Height="36" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom"
+                                Command="{Binding SearchCommand}" CommandParameter="{Binding Children, ElementName=searchCongTy2_wap}">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
@@ -114,7 +128,9 @@
                         <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu vừa mới chỉnh sửa</TextBlock>
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
-                        <DataGrid x:Name="suaCongTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center">
+                        <DataGrid x:Name="suaCongTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center" 
+                                  AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ListCongTy}" 
+                                  CellEditEnding="suaCongTy_dataGrid_CellEditEnding">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -140,12 +156,12 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Sửa" Width="60"/>
-                                <DataGridTextColumn Header="Mã công ty" Width="120" Binding="{Binding congTyId}"/>
-                                <DataGridTextColumn Header="Tên công ty" Width="340" Binding="{Binding tenCongTy}"/>
-                                <DataGridTextColumn Header="Địa chỉ website" Width="280"  Binding="{Binding diaChiWeb}"/>
-                                <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding truSo}"/>
-                                <DataGridTextColumn Header="Số điện thoại" Width="*" Binding="{Binding soDienThoai}"/>
+                                <DataGridTextColumn Header="Sửa" Width="60" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Mã công ty" IsReadOnly="True" Width="120" Binding="{Binding MaCongTy}"/>
+                                <DataGridTextColumn Header="Tên công ty" Width="340" Binding="{Binding TenCongTy}"/>
+                                <DataGridTextColumn Header="Địa chỉ website" Width="280"  Binding="{Binding DiaChiWeb}"/>
+                                <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding DiaChiTruSo}"/>
+                                <DataGridTextColumn Header="Số điện thoại" Width="*" Binding="{Binding Sdt}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

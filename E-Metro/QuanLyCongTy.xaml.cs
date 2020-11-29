@@ -1,5 +1,9 @@
-﻿using System;
+﻿using E_Metro.Model;
+using E_Metro.ViewModel;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,38 +26,8 @@ namespace E_Metro
         public QuanLyCongTy()
         {
             InitializeComponent();
-
-            CongTy TNHH1 = new CongTy();
-
-            TNHH1.congTyId = "001";
-            TNHH1.tenCongTy = "Tranh Nhiem";
-            TNHH1.diaChiWeb = "www.aaa.aa.b";
-            TNHH1.truSo = "HCM";
-            TNHH1.soDienThoai = "011122444";
-
-            CongTy TNHH2 = new CongTy();
-
-            TNHH2.congTyId = "001";
-            TNHH2.tenCongTy = "AAAAAAAa";
-            TNHH2.diaChiWeb = "www.goog.cab";
-            TNHH2.truSo = "HCM";
-            TNHH2.soDienThoai = "01201021210";
-
-            congTy_dataGrid.Items.Add(TNHH1);
-            congTy_dataGrid.Items.Add(TNHH2);
-
-            suaCongTy_dataGrid.Items.Add(TNHH1);
-            suaCongTy_dataGrid.Items.Add(TNHH2);
         }
-        public class CongTy
-        {
-            public string congTyId { get; set; }
-            public string tenCongTy { get; set; }
-            public string diaChiWeb { get; set; }
-            public string truSo { get; set; }
-            public string soDienThoai { get; set; }
 
-        }
         private void maCongTy_txt_GotFocus(object sender, RoutedEventArgs e)
         {
             if (maCongTy_txt.Text == "Mã công ty")
@@ -112,6 +86,45 @@ namespace E_Metro
         {
             if (string.IsNullOrWhiteSpace(sdt_txt.Text))
                 sdt_txt.Text = "Số điện thoại";
+        }
+
+        private void searchCongTy_txt_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchCongTy_txt.Text == "Bạn cần gì...")
+                searchCongTy_txt.Text = "";
+        }
+
+        private void searchCongTy_txt_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(searchCongTy_txt.Text))
+                searchCongTy_txt.Text = "Bạn cần gì...";
+        }
+
+        private void searchCongTy2_txt_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchCongTy2_txt.Text == "Bạn cần gì...")
+                searchCongTy2_txt.Text = "";
+        }
+
+        private void searchCongTy2_txt_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(searchCongTy2_txt.Text))
+                searchCongTy2_txt.Text = "Bạn cần gì...";
+        }
+
+        private void suaCongTy_dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var viewModel = new CongTyViewModel();       
+            viewModel.UpdateCongTy(e, suaCongTy_dataGrid);
+
+        }
+
+        private void searchCongTy2_txt_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

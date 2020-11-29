@@ -35,7 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +57,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\CongTy.cs" />
+    <Compile Include="Model\GaTau.cs" />
+    <Compile Include="Model\TinhTrangTuyenTau.cs" />
+    <Compile Include="Model\TrangThaiGaTau.cs" />
+    <Compile Include="Model\TuyenTau.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Model\UserRole.cs" />
+    <Compile Include="Model\VeTau.cs" />
     <Compile Include="QuanLyCongTy.xaml.cs">
       <DependentUpon>QuanLyCongTy.xaml</DependentUpon>
     </Compile>
@@ -67,6 +77,9 @@
     <Compile Include="veTau.xaml.cs">
       <DependentUpon>veTau.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\CongTyViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Page Include="DangNhap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -95,6 +108,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="QuanLyTuyenTau.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourcesXAML\MainResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -140,5 +157,6 @@
     <Resource Include="assets\dangChinh.png" />
     <Resource Include="assets\vuaChinhSua.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
