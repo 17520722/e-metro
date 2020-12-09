@@ -116,10 +116,17 @@ namespace E_Metro
         {
             var viewModel = new CongTyViewModel();       
             viewModel.UpdateCongTy(e, suaCongTy_dataGrid);
-
         }
 
         private void searchCongTy2_txt_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchCongTy_txt_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {

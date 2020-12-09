@@ -106,12 +106,7 @@ namespace E_Metro.ViewModel
                         break;
                 }
             }
-
-            if (string.IsNullOrEmpty(searchTextCongTy))
-            {
-                return;
-            }
-            if (searchTextCongTy == "Bạn cần gì...")
+            if (searchTextCongTy == "Bạn cần gì..." || string.IsNullOrEmpty(searchTextCongTy))
             {
                 MySqlLoadDataCongTy();
             }

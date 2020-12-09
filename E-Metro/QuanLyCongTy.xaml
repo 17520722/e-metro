@@ -39,7 +39,36 @@
     <Grid Uid="QuanLyCongTy" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <TabControl Background="Transparent" FontSize="16">
-            <TabItem Header="Thêm mới công ty" Width="425" Height="60" Background="Transparent">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border x:Name="Border" BorderBrush="Black" BorderThickness="0 0 1 0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      ContentSource="Header"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="White"/>
+                                        <Setter Property="Foreground" Value="#707070"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Width="425" Height="60" Background="Transparent">
+                <TabItem.Header>
+                    <TextBlock Text="Thêm mới công ty" FontWeight="Bold"></TextBlock>
+                </TabItem.Header>
                 <StackPanel x:Name="themCongTy_stp" VerticalAlignment="Center">
                     <TextBox x:Name="maCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã công ty" GotFocus="maCongTy_txt_GotFocus" LostFocus="maCongTy_txt_LostFocus"/>
                     <TextBox x:Name="tenCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên công ty" GotFocus="tenCongTy_txt_GotFocus" LostFocus="tenCongTy_txt_LostFocus"/>
@@ -56,12 +85,19 @@
                     </Button>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Tra cứu công ty" Width="425" Height="60" Background="Transparent">
+            <TabItem Width="425" Height="60" Background="Transparent">
+                <TabItem.Header>
+                    <TextBlock Text="Tra cứu công ty" FontWeight="Bold"></TextBlock>
+                </TabItem.Header>
                 <StackPanel>
                     <WrapPanel x:Name="searchCongTy_wap" HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBox x:Name="searchCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" GotFocus="searchCongTy_txt_GotFocus" LostFocus="searchCongTy_txt_LostFocus"/>
+                        <TextBox x:Name="searchCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" GotFocus="searchCongTy_txt_GotFocus" LostFocus="searchCongTy_txt_LostFocus" KeyUp="searchCongTy_txt_KeyUp">
+                            <TextBox.InputBindings>
+                                <KeyBinding Command="{Binding SearchCommand}" CommandParameter="{Binding Children, ElementName=searchCongTy_wap}" Key="Return"/>
+                            </TextBox.InputBindings>
+                        </TextBox>
                         <Button Background="Transparent" Width="36" Height="36" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom" 
-                                Command="{Binding SearchCommand}" CommandParameter="{Binding Children, ElementName=searchCongTy_wap}">
+                                Command="{Binding SearchCommand}" CommandParameter="{Binding Children, ElementName=searchCongTy_wap}" >
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
@@ -103,7 +139,10 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Cập nhật công ty" Width="425" Height="60" Background="Transparent">
+            <TabItem Width="425" Height="60" Background="Transparent">
+                <TabItem.Header>
+                    <TextBlock Text="Cập nhật công ty" FontWeight="Bold"></TextBlock>
+                </TabItem.Header>
                 <StackPanel>
                     <WrapPanel x:Name="searchCongTy2_wap" HorizontalAlignment="Right" Margin="0 10 0 0">
                         <TextBox x:Name="searchCongTy2_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." 
