@@ -19,4 +19,9 @@ namespace E_Metro.Model
         private int thoiGianChoTB { get; set; }
         private String tinhTrang { get; set; }
     }
+    public enum LoaiTuyenEnum
+    {
+        Thuong = 0,
+        TocHanh = 1,
+    }
 }

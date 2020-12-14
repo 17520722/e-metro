@@ -8,7 +8,10 @@ namespace E_Metro.Model
 {
     class TinhTrangTuyenTau
     {
-        private String  maTTTuyenTau { get; set; }
-        private String tinhTrang { get; set; }
+        private String maTTTuyenTau;
+        private String tinhTrang;
+
+        public String MaTTTuyenTau { get => maTTTuyenTau; set => maTTTuyenTau = value; }
+        public String TinhTrang { get => tinhTrang; set => tinhTrang = value; }
     }
 }

@@ -3,9 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         xmlns:local="clr-namespace:E_Metro"
+        xmlns:tuyenTauViewModel="clr-namespace:E_Metro.ViewModel"
         mc:Ignorable="d"
         Title="QuanLyTuyenTau" Height="832.62" Width="1286.097" WindowState="Maximized">
+    <Window.DataContext>
+        <tuyenTauViewModel:TuyenTauViewModel></tuyenTauViewModel:TuyenTauViewModel>
+    </Window.DataContext>
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
@@ -31,36 +36,79 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="0 48 0 0"/>
         </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsEditable" Value="True"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+        <Style TargetType="{x:Type wpfTool:TimePicker}">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
     </Window.Resources>
     <Grid Uid="QuanLyTuyenTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <TabControl Background="Transparent" FontSize="16">
             <TabItem Header="Thêm mới tuyến tàu" Width="425" Height="60" Background="Transparent">
                 <StackPanel VerticalAlignment="Center">
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="loaiTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại tuyến: Thường"/>
-                        <TextBox x:Name="tenCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Công ty TNHH MTV WAVI"/>
+                    <WrapPanel HorizontalAlignment="Center" Margin="0 0 64 0">
+                        <Button x:Name="changeLoaiTuyen_btn" Height="48" Width="48" Background="White" 
+                                BorderThickness="0" Padding="10" Margin="0 16 16 0"
+                                Command="{Binding DoiLoaiTuyenCommand}" CommandParameter="{Binding ElementName=loaiTuyen_txt}">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="50"/>
+                                </Style>
+                            </Button.Resources>
+                            <Image Source="/assets/twoway.png"/>
+                        </Button>
+                        <TextBox x:Name="loaiTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại tuyến: Thường" IsReadOnly="True"/>
+                        <ComboBox x:Name="tenCongTy_cbx" ItemsSource="{Binding ListCongTy}" Text="Tên công ty" 
+                                  DisplayMemberPath="TenCongTy" SelectedValuePath="MaCongTy" MouseEnter="tenCongTy_cbx_MouseEnter" MouseUp="tenCongTy_cbx_MouseUp"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="maTuyen_txt"  Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã tuyến"/>
-                        <TextBox x:Name="tenTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên tuyến"/>
+                        <TextBox x:Name="maTuyen_txt"  Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã tuyến" GotFocus="maTuyen_txt_GotFocus" LostFocus="maTuyen_txt_LostFocus"/>
+                        <TextBox x:Name="tenTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên tuyến" GotFocus="tenTuyen_txt_GotFocus" LostFocus="tenTuyen_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="gioBatDau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ băt đầu"/>
-                        <TextBox x:Name="gioKetThuc_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ kết thúc"/>
+                        <wpfTool:TimePicker x:Name="gioBatDau_time" Watermark="Giờ bắt đầu"/>
+                        <wpfTool:TimePicker x:Name="gioKetThuc_time" Watermark="Giờ kết thúc"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="thoiGianCho_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Khoảng thời gian chờ"/>
-                        <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
+                        <TextBox x:Name="thoiGianCho_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Khoảng thời gian chờ" GotFocus="thoiGianCho_txt_GotFocus" LostFocus="thoiGianCho_txt_LostFocus"/>
+                        <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé" GotFocus="giaVe_txt_GotFocus" LostFocus="giaVe_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="gaDau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga đầu"/>
-                        <TextBox x:Name="gaCuoi_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga cuối"/>
+                        <ComboBox x:Name="gaDau_cbx" ItemsSource="{Binding ListGaTau}" Text="Ga đầu" 
+                                  DisplayMemberPath="TenGaTau" SelectedValuePath="MaGaTau" MouseEnter="gaDau_cbx_MouseEnter"/>
+                        <ComboBox x:Name="gaCuoi_cbx" ItemsSource="{Binding ListGaTau}" Text="Ga cuối" 
+                                  DisplayMemberPath="TenGaTau" SelectedValuePath="MaGaTau" MouseEnter="gaCuoi_cbx_MouseEnter"/>
                     </WrapPanel>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="tinhTrang_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tình trạng"/>
+                    <WrapPanel x:Name="changeStatus_wap" HorizontalAlignment="Center" Margin="0 0 64 0">
+                        <Button x:Name="changeStatus_btn" Height="48" Width="48" Background="White" 
+                                BorderThickness="0" Padding="10" Margin="0 16 16 0"
+                                Command="{Binding DoiTrangThaiCommand}" CommandParameter="{Binding ElementName=tinhTrang_txt}">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="50"/>
+                                </Style>
+                            </Button.Resources>
+                            <Image Source="/assets/twoway.png"/>
+                        </Button>
+                        <TextBox x:Name="tinhTrang_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="{Binding TrangThaiTuyen}" IsReadOnly="True"/>
                     </WrapPanel>
-                    <Button Content="Tiếp tục (1/2)">
+                    <Button Content="Thêm mới">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" Value="10"/>
@@ -123,26 +171,26 @@
                 <StackPanel VerticalAlignment="Center">
                     <WrapPanel HorizontalAlignment="Center">
                         <TextBox x:Name="loaiTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại tuyến: Thường"/>
-                        <TextBox x:Name="tenCongTyUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Công ty TNHH MTV WAVI"/>
+                        <TextBox x:Name="tenCongTyUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên công ty vận hành" GotFocus="tenCongTyUpdate_txt_GotFocus" LostFocus="tenCongTyUpdate_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="maTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã tuyến"/>
-                        <TextBox x:Name="tenTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên tuyến"/>
+                        <TextBox x:Name="maTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã tuyến" GotFocus="maTuyenUpdate_txt_GotFocus" LostFocus="maTuyenUpdate_txt_LostFocus"/>
+                        <TextBox x:Name="tenTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên tuyến" GotFocus="tenTuyenUpdate_txt_GotFocus" LostFocus="tenTuyenUpdate_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="gioBatDauUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ băt đầu"/>
-                        <TextBox x:Name="gioKetThucUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ kết thúc"/>
+                        <TextBox x:Name="gioBatDauUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ bắt đầu" GotFocus="gioBatDauUpdate_txt_GotFocus" LostFocus="gioBatDauUpdate_txt_LostFocus"/>
+                        <TextBox x:Name="gioKetThucUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giờ kết thúc" GotFocus="gioKetThucUpdate_txt_GotFocus" LostFocus="gioKetThucUpdate_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="thoiGianChoUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Khoảng thời gian chờ"/>
-                        <TextBox x:Name="giaVeUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
+                        <TextBox x:Name="thoiGianChoUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Khoảng thời gian chờ" GotFocus="thoiGianChoUpdate_txt_GotFocus" LostFocus="thoiGianChoUpdate_txt_LostFocus"/>
+                        <TextBox x:Name="giaVeUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé" GotFocus="giaVeUpdate_txt_GotFocus" LostFocus="giaVeUpdate_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="gaDauUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga đầu"/>
-                        <TextBox x:Name="gaCuoiUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga cuối"/>
+                        <TextBox x:Name="gaDauUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga đầu" GotFocus="gaDauUpdate_txt_GotFocus" LostFocus="gaDauUpdate_txt_LostFocus"/>
+                        <TextBox x:Name="gaCuoiUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ga cuối" GotFocus="gaCuoiUpdate_txt_GotFocus" LostFocus="gaCuoiUpdate_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="tinhTrangUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tình trạng"/>
+                        <TextBox x:Name="tinhTrangUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tình trạng" GotFocus="tinhTrangUpdate_txt_GotFocus" LostFocus="tinhTrangUpdate_txt_LostFocus"/>
                     </WrapPanel>
                         <Button Content="Tiếp tục (1/2)">
                         <Button.Resources>

@@ -37,6 +37,11 @@ CREATE TABLE GaTau
     foreign key (trangThai) references TrangThaiGaTau(maTTGaTau)
 );
 
+insert into GaTau values ('ga001', N'Suối tiên', N'Q. Thủ Đức', 'binhThuong', 'iphoneXas');
+insert into GaTau values ('ga002', N'ĐHQG', N'Q. Thủ Đức', 'binhThuong', 'iphoneXas');
+insert into GaTau values ('ga003', N'Bình Thái', N'Q. Thủ Đức', 'binhThuong', 'iphoneXas');
+insert into GaTau values ('ga004', N'An Lạc', N'Q. Thủ Đức', 'binhThuong', 'iphoneXas');
+
 CREATE TABLE TinhTrangTuyenTau
 (
 	maTTTuyenTau nvarchar(10) primary key not null,

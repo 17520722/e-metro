@@ -12,6 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using Xceed.Wpf.Toolkit;
 
 namespace E_Metro.ViewModel
 {
@@ -184,7 +185,7 @@ namespace E_Metro.ViewModel
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Connection Fail!");
-                    MessageBox.Show(ex.ToString());
+                    System.Windows.MessageBox.Show(ex.ToString());
                 }
                 finally
                 {
@@ -209,13 +210,13 @@ namespace E_Metro.ViewModel
                         var reader = command.ExecuteReader();
 
                         ListCongTy.Add(congTy);
-                        MessageBox.Show("Them moi thanh cong!");
+                        System.Windows.MessageBox.Show("Them moi thanh cong!");
                     }
                 }
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Connection Fail!");
-                    MessageBox.Show(ex.ToString());
+                    System.Windows.MessageBox.Show(ex.ToString());
                 }
                 finally
                 {
@@ -244,7 +245,7 @@ namespace E_Metro.ViewModel
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Connection Fail!");
-                    MessageBox.Show(ex.ToString());
+                    System.Windows.MessageBox.Show(ex.ToString());
                 }
                 finally
                 {
@@ -286,7 +287,7 @@ namespace E_Metro.ViewModel
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Connection Fail!");
-                    MessageBox.Show(ex.ToString());
+                    System.Windows.MessageBox.Show(ex.ToString());
                 }
                 finally
                 {

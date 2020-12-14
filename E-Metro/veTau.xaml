@@ -12,6 +12,21 @@
                 <ScrollViewer x:Name="PART_ContentHost"/>
             </Border>
         </ControlTemplate>
+        <ControlTemplate x:Key="TextBoxChangeTwoWay" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer x:Name="PART_ContentHost"/>
+                    <Button Grid.Column="1" Height="32" Width="32" Margin="0 0 5 0"
+                            Background="Transparent" BorderThickness="0">
+                        <Image Source="/assets/twoway.png"/>
+                    </Button>
+                </Grid>
+            </Border>
+        </ControlTemplate>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Height" Value="48"/>
@@ -35,16 +50,21 @@
     <Grid Uid="veTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <StackPanel VerticalAlignment="Center">
-            <TextBox x:Name="loaiVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại vé"/>
+            <TextBox x:Name="loaiVe_txt" Template="{StaticResource TextBoxChangeTwoWay}" Text="Loại vé"/>
             <TextBox x:Name="tuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tuyến"/>
             <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
             <TextBox x:Name="soLuongVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số lượng"/>
-            <Button x:Name="inVe_btn"  Content="In vé" Height="64" Width="142">
+            <Button x:Name="inVe_btn" Height="64" Width="142">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
+                <WrapPanel>
+                    <Image Source="/assets/print.png" Height="32" Width="32"/>
+                    <TextBlock Text="In vé" VerticalAlignment="Center" Margin="5 0 0 0"
+                               FontSize="16"/>
+                </WrapPanel>
             </Button>
         </StackPanel>
     </Grid>

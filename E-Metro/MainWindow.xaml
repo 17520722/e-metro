@@ -9,6 +9,7 @@
         Title="MainWindow" Height="828" Width="1287.5" WindowState="Maximized">
     <Grid Uid="Main"  Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
         <Canvas  Margin="0,0,1280,0">
+            
             <Image Source="/assets/back.png" Stretch="Fill"/>
         </Canvas>
         <Canvas Width="1280" Height="36" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.ColumnSpan="4">
