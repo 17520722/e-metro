@@ -66,5 +66,26 @@ namespace E_Metro
             quanLyTuyenTau.ShowDialog();
             this.Show();
         }
+
+        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
+
+        private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Grid_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void Grid_PreviewMouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

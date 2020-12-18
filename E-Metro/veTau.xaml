@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Metro"
         mc:Ignorable="d"
-        Title="veTau" Height="826.5" Width="1295">
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="veTau" Height="700" Width="1280">
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
@@ -47,7 +49,7 @@
             <Setter Property="Margin" Value="0 48 0 0"/>
         </Style>
     </Window.Resources>
-    <Grid Uid="veTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
+    <Grid Uid="veTau" Width="1280" Height="700" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <StackPanel VerticalAlignment="Center">
             <TextBox x:Name="loaiVe_txt" Template="{StaticResource TextBoxChangeTwoWay}" Text="Loại vé"/>

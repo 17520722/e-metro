@@ -133,5 +133,35 @@ namespace E_Metro
                 e.Handled = true;
             }
         }
+
+        private void Grid_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void DockPanel_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Grid_PreviewMouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Grid_PreviewMouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void dangNhap_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dangXuat_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

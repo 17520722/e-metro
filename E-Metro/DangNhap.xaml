@@ -5,39 +5,58 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Metro"
         mc:Ignorable="d"
-        Title="Quản lý công ty" Height="829.838" Width="1286.29" WindowState="Maximized" Closed="Window_Closed">
-    <Grid Uid="DangNhap"  Width="1280" Height="800" Background="#ff633636" ClipToBounds="True" >
-        <Border  Width="1280" Height="853" BorderBrush="#ff707070" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <Canvas>
-            <Image Source="assets/back.png"></Image>
-        </Canvas>
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Title="E-Metro Đăng nhập" Height="700" Width="1280" Closed="Window_Closed">
+    <Window.Background>
+        <ImageBrush ImageSource="assets/back.png"></ImageBrush>
+    </Window.Background>
+    <Grid Uid="DangNhap"  Width="1280" Height="700" ClipToBounds="True" >
         <Canvas  Width="332" Height="48" Margin="474,357,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBox x:Name="username_txt" 
                      Text="Tài khoản" FontFamily="Segoe UI" FontSize="16"  Background="#ffffffff" Foreground="#ff707070"
                      TextAlignment="left" VerticalContentAlignment="Center" 
                      Width="332" Height="48" Canvas.Left="0" Canvas.Top="0" Padding="16 0 0 0" BorderThickness="0"
-                     GotFocus="username_GotFocus" LostFocus="username_LostFocus" TabIndex="0"/>
+                     GotFocus="username_GotFocus" LostFocus="username_LostFocus" TabIndex="0">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </TextBox.Resources>                
+            </TextBox>
         </Canvas>
         <Canvas  Width="332" Height="48" Margin="474,421,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            
+            <Rectangle RadiusX="10" RadiusY="10" Width="{Binding Width,ElementName=password_txb}" Height="{Binding Height,ElementName=password_txb}" 
+                       Stroke="White" StrokeThickness="1" Fill="White" VerticalAlignment="Top"
+                       />
             <TextBlock x:Name="password_txb" Text="Mật khẩu" 
-                     FontFamily="Segoe UI" FontSize="16" Background="#ffffffff" Foreground="#ff707070"
+                     FontFamily="Segoe UI" FontSize="16" Background="Transparent" Foreground="#ff707070"
                      Height="48"  Width="332"
-                     Canvas.Left="0" Canvas.Top="0" Padding="16 12 0 0"/>
+                     Canvas.Left="0" Canvas.Top="0" Padding="16 12 0 0"
+                      >
+            </TextBlock>
             <PasswordBox x:Name="password_txt" PasswordChar="*" 
                          FontFamily="Segoe UI" FontSize="16" Background="Transparent" Foreground="#ff707070"
                          VerticalContentAlignment="Center" 
                          Width="332" Height="48" BorderThickness="0"
                          Canvas.Left="0" Canvas.Top="0" Padding="16 0 0 0" 
-                         GotFocus="passwordv2_GotFocus" LostFocus="passwordv2_LostFocus" TabIndex="1"></PasswordBox>
+                         GotFocus="passwordv2_GotFocus" LostFocus="passwordv2_LostFocus" TabIndex="1">
+            </PasswordBox>
         </Canvas>
         <Canvas  Width="200" Height="48" Margin="540,500,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button x:Name="dangNhap" Content="Đăng nhập" 
                     Width="200" Height="48" BorderThickness="0"
                     Background="#ff50d0ff" Foreground="#ffffffff" FontSize="16" 
-                    Click="dangNhap_Click" TabIndex="2"></Button>
+                    Click="dangNhap_Click" TabIndex="2">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </Canvas>
-        <Canvas  Width="1280" Height="36" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
-            <Border  Width="1280" Height="36" Background="#ffe6e6e6" BorderBrush="#ff707070" Canvas.Left="0" Canvas.Top="0"  />
+        <Canvas Height="36" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" Background="#ffe6e6e6">
             <TextBlock  Text="Quản lý" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="130" Canvas.Top="8"  />
             <TextBlock  Text="Trang chính" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="16" Canvas.Top="8"  />
             <TextBlock  Text="Vé" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="216" Canvas.Top="8"  />

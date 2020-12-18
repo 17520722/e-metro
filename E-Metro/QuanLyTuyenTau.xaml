@@ -7,7 +7,12 @@
         xmlns:local="clr-namespace:E_Metro"
         xmlns:tuyenTauViewModel="clr-namespace:E_Metro.ViewModel"
         mc:Ignorable="d"
-        Title="QuanLyTuyenTau" Height="832.62" Width="1286.097" WindowState="Maximized">
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Title="QuanLyTuyenTau" Height="700" Width="1280">
+    <Window.Background>
+        <ImageBrush ImageSource="assets/back.png"></ImageBrush>
+    </Window.Background>
     <Window.DataContext>
         <tuyenTauViewModel:TuyenTauViewModel></tuyenTauViewModel:TuyenTauViewModel>
     </Window.DataContext>
@@ -57,37 +62,70 @@
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
         </Style>
     </Window.Resources>
-    <Grid Uid="QuanLyTuyenTau" Width="1280" Height="800" Background="#ff633636" ClipToBounds="True">
-        <Image Source="/assets/back.png" Stretch="Fill"/>
+    <Grid Uid="QuanLyTuyenTau" Width="1280" Height="700" ClipToBounds="True">
+
         <TabControl Background="Transparent" FontSize="16">
-            <TabItem Header="Thêm mới tuyến tàu" Width="425" Height="60" Background="Transparent">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Border x:Name="Border" BorderBrush="#00000000" BorderThickness="0 0 2 0">
+                                    <ContentPresenter x:Name="ContentSite"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      ContentSource="Header"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                        <Setter Property="Foreground" Value="White"/>
+
+                                    </Trigger>
+
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#c5ffffff"/>
+                                        <Setter Property="Foreground" Value="#707070"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Width="425" Height="60" Background="Transparent">
+                <TabItem.Header>
+                    <TextBlock Text="Thêm mới tuyến tàu" FontWeight="Bold"></TextBlock>
+                </TabItem.Header>
                 <StackPanel VerticalAlignment="Center">
                     <WrapPanel HorizontalAlignment="Center" Margin="0 0 64 0">
                         <Button x:Name="changeLoaiTuyen_btn" Height="48" Width="48" Background="White" 
                                 BorderThickness="0" Padding="10" Margin="0 16 16 0"
                                 Command="{Binding DoiLoaiTuyenCommand}" CommandParameter="{Binding ElementName=loaiTuyen_txt}">
+                            <Image Source="/assets/twoway.png"/>
                             <Button.Resources>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="50"/>
                                 </Style>
-                            </Button.Resources>
-                            <Image Source="/assets/twoway.png"/>
+                            </Button.Resources>     
                         </Button>
-                        <TextBox x:Name="loaiTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại tuyến: Thường" IsReadOnly="True"/>
-                        <ComboBox x:Name="tenCongTy_cbx" ItemsSource="{Binding ListCongTy}" Text="Tên công ty" 
+                        <TextBox x:Name="loaiTuyen_txt" Text="Loại tuyến: Thường" IsReadOnly="True"/>
+                        
+                        <ComboBox x:Name="tenCongTy_cbx" ItemsSource="{Binding ListCongTy}" Text="Tên công ty"
+                                  
                                   DisplayMemberPath="TenCongTy" SelectedValuePath="MaCongTy" MouseEnter="tenCongTy_cbx_MouseEnter" MouseUp="tenCongTy_cbx_MouseUp"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="maTuyen_txt"  Template="{StaticResource TextBoxBaseControlTemplate}" Text="Mã tuyến" GotFocus="maTuyen_txt_GotFocus" LostFocus="maTuyen_txt_LostFocus"/>
-                        <TextBox x:Name="tenTuyen_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên tuyến" GotFocus="tenTuyen_txt_GotFocus" LostFocus="tenTuyen_txt_LostFocus"/>
+                        <TextBox x:Name="maTuyen_txt"  Text="Mã tuyến" GotFocus="maTuyen_txt_GotFocus" LostFocus="maTuyen_txt_LostFocus"/>
+                        <TextBox x:Name="tenTuyen_txt" Text="Tên tuyến" GotFocus="tenTuyen_txt_GotFocus" LostFocus="tenTuyen_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
                         <wpfTool:TimePicker x:Name="gioBatDau_time" Watermark="Giờ bắt đầu"/>
                         <wpfTool:TimePicker x:Name="gioKetThuc_time" Watermark="Giờ kết thúc"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
-                        <TextBox x:Name="thoiGianCho_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Khoảng thời gian chờ" GotFocus="thoiGianCho_txt_GotFocus" LostFocus="thoiGianCho_txt_LostFocus"/>
-                        <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé" GotFocus="giaVe_txt_GotFocus" LostFocus="giaVe_txt_LostFocus"/>
+                        <TextBox x:Name="thoiGianCho_txt" Text="Khoảng thời gian chờ" GotFocus="thoiGianCho_txt_GotFocus" LostFocus="thoiGianCho_txt_LostFocus"/>
+                        <TextBox x:Name="giaVe_txt" Text="Giá vé" GotFocus="giaVe_txt_GotFocus" LostFocus="giaVe_txt_LostFocus"/>
                     </WrapPanel>
                     <WrapPanel HorizontalAlignment="Center">
                         <ComboBox x:Name="gaDau_cbx" ItemsSource="{Binding ListGaTau}" Text="Ga đầu" 
@@ -106,7 +144,7 @@
                             </Button.Resources>
                             <Image Source="/assets/twoway.png"/>
                         </Button>
-                        <TextBox x:Name="tinhTrang_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="{Binding TrangThaiTuyen}" IsReadOnly="True"/>
+                        <TextBox x:Name="tinhTrang_txt" Text="{Binding TrangThaiTuyen}" IsReadOnly="True"/>
                     </WrapPanel>
                     <Button Content="Thêm mới">
                         <Button.Resources>
@@ -117,10 +155,13 @@
                     </Button>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Tra cứu tuyến tàu" Width="425" Height="60" Background="Transparent">
+            <TabItem Width="425" Height="60" Background="Transparent">
+                <TabItem.Header>
+                    <TextBlock Text="Tra cứu tuyến tàu" FontWeight="Bold"></TextBlock>
+                </TabItem.Header>
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBlock HorizontalAlignment="Left" Width="800" VerticalAlignment="Bottom" Foreground="White" FontStyle="Italic" Padding="10 0 0 0">
+                        <TextBlock HorizontalAlignment="Left" Width="700" VerticalAlignment="Bottom" Foreground="White" FontStyle="Italic" Padding="10 0 0 0">
                             Nhấp vào tuyến tàu để xem thông tin chi tiết
                         </TextBlock>
                         <TextBox x:Name="searchTuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" VerticalAlignment="Bottom"/>
@@ -167,7 +208,10 @@
                     </Grid>
                 </StackPanel>
             </TabItem>
-            <TabItem Header="Cập nhật tuyến tàu" Width="425" Height="60" Background="Transparent">
+            <TabItem Width="425" Height="60" Background="Transparent">
+                <TabItem.Header>
+                    <TextBlock Text="Cập nhật tuyến tàu" FontWeight="Bold"></TextBlock>
+                </TabItem.Header>
                 <StackPanel VerticalAlignment="Center">
                     <WrapPanel HorizontalAlignment="Center">
                         <TextBox x:Name="loaiTuyenUpdate_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Loại tuyến: Thường"/>
