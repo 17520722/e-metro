@@ -80,5 +80,6 @@ namespace E_Metro
             if (lienKetSoDoGaTau_txt.Text == "")
                 lienKetSoDoGaTau_txt.Text = "Liên kết sơ đồ ga tàu";
         }
+
     }
 }

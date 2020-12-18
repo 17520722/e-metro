@@ -7,7 +7,10 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
-        Title="QuanLyGaTau" Height="700" Width="1280">
+        Title="QuanLyGaTau" Height="700" Width="1290">
+    <Window.Background>
+        <ImageBrush ImageSource="assets/back.png"></ImageBrush>
+    </Window.Background>
     <Window.Resources>
         <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
             <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
@@ -34,10 +37,42 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="0 48 0 0"/>
         </Style>
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-    <Grid Uid="QuanLyGaTau" Width="1280" Height="700" Background="#ff633636" ClipToBounds="True">
-        <Image Source="/assets/back.png" Stretch="Fill"/>
-        <TabControl Background="Transparent" FontSize="16">
+    <Grid Uid="QuanLyGaTau" Width="1280" Height="700" ClipToBounds="True">
+        <Canvas Width="1280" Height="36" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+            <Border x:Name="border_dangNhap_btn"  Width="1280" Height="36" Background="#ffe6e6e6" BorderBrush="#ff707070" Canvas.Left="0" Canvas.Top="0"  >
+                <Button x:Name="dangNhap_btn" Content="Nhân viên sở GTTP" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#ffe6e6e6" FontSize="14" FontWeight="SemiBold"
+                        Margin="0,0,15,0" BorderThickness="0"
+                        Style="{StaticResource MyButton}">
+
+                </Button>
+            </Border>
+            <Border x:Name="border_dangXuat_btn"  Width="1280" Height="36" Background="#ffe6e6e6" BorderBrush="#ff707070" Canvas.Left="0" Canvas.Top="0" Visibility="Hidden" >
+                <Button x:Name="dangXuat_btn" Content="Đăng xuất" Width="75" HorizontalAlignment="Right" VerticalAlignment="Center" Background="#ffe6e6e6" FontSize="14" Margin="0,0,6,0" BorderThickness="0"/>
+            </Border>
+            <TextBlock  Text="Quản lý" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="124" Canvas.Top="10"  />
+            <TextBlock  Text="Trang chính" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="10" Canvas.Top="10"  />
+            <TextBlock  Text="Vé" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="210" Canvas.Top="10"  />
+        </Canvas>
+        <TabControl Background="Transparent" FontSize="16" Margin="0 36 0 0">
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -95,8 +130,8 @@
                 </TabItem.Header>
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBox x:Name="searchGaTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic"/>
-                        <Button Background="Transparent" Height="48" Width="48" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
+                        <TextBox x:Name="searchGaTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" Margin="0 0 0 0" VerticalAlignment="Center" Height="38"/>
+                        <Button Background="Transparent" Height="24" Width="24" Margin="8 0 16 0" BorderThickness="0" VerticalAlignment="Center" Style="{StaticResource MyButton}">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
@@ -143,8 +178,8 @@
                 </TabItem.Header>
                 <StackPanel>
                     <WrapPanel HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBox x:Name="searchGaTau2_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic"/>                           
-                        <Button Background="Transparent" Height="48" Width="48" Margin="0 0 16 0" BorderThickness="0" VerticalAlignment="Bottom">
+                        <TextBox x:Name="searchGaTau2_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" Height="38" Margin="0 0 0 0"/>                           
+                        <Button Background="Transparent" Height="24" Width="24" Margin="8 0 16 0" BorderThickness="0" VerticalAlignment="Center">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>

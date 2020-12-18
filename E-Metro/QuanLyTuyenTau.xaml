@@ -61,10 +61,28 @@
             <Setter Property="Padding" Value="16 0 0 0"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
         </Style>
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Grid Uid="QuanLyTuyenTau" Width="1280" Height="700" ClipToBounds="True">
 
-        <TabControl Background="Transparent" FontSize="16">
+        <TabControl Background="Transparent" FontSize="16" >
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -164,8 +182,8 @@
                         <TextBlock HorizontalAlignment="Left" Width="700" VerticalAlignment="Bottom" Foreground="White" FontStyle="Italic" Padding="10 0 0 0">
                             Nhấp vào tuyến tàu để xem thông tin chi tiết
                         </TextBlock>
-                        <TextBox x:Name="searchTuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" VerticalAlignment="Bottom"/>
-                        <Button Background="Transparent" Width="48" Height="48" Margin="0 0 16 0" VerticalAlignment="Bottom">
+                        <TextBox x:Name="searchTuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" VerticalAlignment="Center" Height="38" Margin="0 0 0 0"/>
+                        <Button Background="Transparent" Width="24" Height="24" Margin="8 0 16 0" VerticalAlignment="Center" Style="{StaticResource MyButton}">
                             <Image Source="/assets/search.png"/>
                         </Button>
                     </WrapPanel>
