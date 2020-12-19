@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Metro"
         xmlns:congTyViewModel="clr-namespace:E_Metro.ViewModel"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="CanMinimize"
         Title="QuanLyCongTy" Height="700" Width="1290">
     <Window.DataContext>
-        <congTyViewModel:CongTyViewModel></congTyViewModel:CongTyViewModel>
+        <congTyViewModel:CongTyViewModel x:Name="viewModel"></congTyViewModel:CongTyViewModel>
     </Window.DataContext>
     <Window.Background>
         <ImageBrush ImageSource="assets/back.png"></ImageBrush>
@@ -39,6 +40,17 @@
             <Setter Property="Background" Value="#50D0FF"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="0 48 0 0"/>
+        </Style>
+        <Style TargetType="{x:Type wpfTool:TimePicker}">
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Format" Value="Custom"/>
+            <Setter Property="FormatString" Value="HH:mm:ss"/>
         </Style>
         <Style x:Key="MyButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True" />

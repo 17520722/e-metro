@@ -113,8 +113,7 @@ namespace E_Metro
         }
 
         private void suaCongTy_dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            var viewModel = new CongTyViewModel();       
+        {   
             viewModel.UpdateCongTy(e, suaCongTy_dataGrid);
         }
 

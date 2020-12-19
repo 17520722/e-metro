@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:E_Metro.ResourcesXAML"
                     xmlns:viewmodel="clr-namespace:E_Metro.ViewModel"
-                    xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit"
+                    xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
                     >
     <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
 </ResourceDictionary>

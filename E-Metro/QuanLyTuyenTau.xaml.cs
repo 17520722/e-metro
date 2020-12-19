@@ -1,4 +1,6 @@
-﻿using System;
+﻿using E_Metro.Model;
+using E_Metro.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,40 +58,28 @@ namespace E_Metro
 
         private void thoiGianCho_txt_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (thoiGianCho_txt.Text == "Khoảng thời gian chờ")
+            if (thoiGianCho_txt.Text == "Khoảng thời gian chờ (phút)")
                 thoiGianCho_txt.Text = "";
         }
 
         private void thoiGianCho_txt_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(thoiGianCho_txt.Text))
-                thoiGianCho_txt.Text = "Khoảng thời gian chờ";
+                thoiGianCho_txt.Text = "Khoảng thời gian chờ (phút)";
         }
 
         private void giaVe_txt_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (giaVe_txt.Text == "Giá vé")
+            if (giaVe_txt.Text == "Giá vé (vnđ)")
                 giaVe_txt.Text = "";
         }
 
         private void giaVe_txt_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(giaVe_txt.Text))
-                giaVe_txt.Text = "Giá vé";
+                giaVe_txt.Text = "Giá vé (vnđ)";
         }
         //***************************CAPNHAT******************************
-
-        private void tenCongTyUpdate_txt_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (tenCongTyUpdate_txt.Text == "Tên công ty vận hành")
-                tenCongTyUpdate_txt.Text = "";
-        }
-
-        private void tenCongTyUpdate_txt_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tenCongTyUpdate_txt.Text))
-                tenCongTyUpdate_txt.Text = "Tên công ty vận hành";
-        }
 
         private void maTuyenUpdate_txt_LostFocus(object sender, RoutedEventArgs e)
         {
@@ -107,30 +97,6 @@ namespace E_Metro
         {
             if (string.IsNullOrWhiteSpace(tenTuyenUpdate_txt.Text))
                 tenTuyenUpdate_txt.Text = "Tên tuyến";
-        }
-
-        private void gioBatDauUpdate_txt_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (gioBatDauUpdate_txt.Text == "Giờ bắt đầu")
-                gioBatDauUpdate_txt.Text = "";
-        }
-
-        private void gioBatDauUpdate_txt_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(gioBatDauUpdate_txt.Text))
-                gioBatDauUpdate_txt.Text = "Giờ bắt đầu";
-        }
-
-        private void gioKetThucUpdate_txt_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (gioKetThucUpdate_txt.Text == "Giờ kết thúc")
-                gioKetThucUpdate_txt.Text = "";
-        }
-
-        private void gioKetThucUpdate_txt_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(gioKetThucUpdate_txt.Text))
-                gioKetThucUpdate_txt.Text = "Giờ kết thúc";
         }
 
         private void thoiGianChoUpdate_txt_GotFocus(object sender, RoutedEventArgs e)
@@ -157,60 +123,91 @@ namespace E_Metro
                 giaVeUpdate_txt.Text = "Giá vé";
         }
 
-        private void gaDauUpdate_txt_GotFocus(object sender, RoutedEventArgs e)
+        //*********************Xu ly ki tu so ***********************//
+
+        private void thoiGianCho_txt_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (gaDauUpdate_txt.Text == "Ga đầu")
-                gaDauUpdate_txt.Text = "";
+            e.Handled = !AreAllValidNumericChars(e.Text);
         }
 
-        private void gaDauUpdate_txt_LostFocus(object sender, RoutedEventArgs e)
+        private void giaVe_txt_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(gaDauUpdate_txt.Text))
-                gaDauUpdate_txt.Text = "Ga đầu";
+            e.Handled = !AreAllValidNumericChars(e.Text);
         }
 
-        private void gaCuoiUpdate_txt_GotFocus(object sender, RoutedEventArgs e)
+        private bool AreAllValidNumericChars(string str)
         {
-            if (gaCuoiUpdate_txt.Text == "Ga cuối")
-                gaCuoiUpdate_txt.Text = "";
+            foreach (char c in str)
+            {
+                if (!Char.IsNumber(c)) return false;
+            }
+
+            return true;
+        }
+        //*********************UPDATE***************************//
+        private void handle_Update_Click(object sender, RoutedEventArgs e)
+        {
+            TuyenTau a = (TuyenTau)tuyenTau_dataGrid.SelectedItem;
+            viewModel.CloneContentTuyen(a);
+
+            update_tab.IsSelected = true;
         }
 
-        private void gaCuoiUpdate_txt_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(gaCuoiUpdate_txt.Text))
-                gaCuoiUpdate_txt.Text = "Ga cuối";
-        }
+        //**********************Drop down text************************/
 
-        private void tinhTrangUpdate_txt_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (tinhTrangUpdate_txt.Text == "Tình trạng")
-                tinhTrangUpdate_txt.Text = "";
-        }
-
-        private void tinhTrangUpdate_txt_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(tinhTrangUpdate_txt.Text))
-                tinhTrangUpdate_txt.Text = "Tình trạng";
-        }
-
-        private void tenCongTy_cbx_MouseEnter(object sender, MouseEventArgs e)
-        {
-            tenCongTy_cbx.IsDropDownOpen = true;
-        }
-
-        private void tenCongTy_cbx_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            //tenCongTy_cbx.IsDropDownOpen = true;
-        }
-
-        private void gaDau_cbx_MouseEnter(object sender, MouseEventArgs e)
+        private void gaDau_cbx_MouseUp(object sender, MouseButtonEventArgs e)
         {
             gaDau_cbx.IsDropDownOpen = true;
         }
 
-        private void gaCuoi_cbx_MouseEnter(object sender, MouseEventArgs e)
+        private void gaCuoi_cbx_MouseUp(object sender, MouseButtonEventArgs e)
         {
             gaCuoi_cbx.IsDropDownOpen = true;
+        }
+
+        private void gaDauUpdate_txt_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            gaDauUpdate_cbx.IsDropDownOpen = true;
+        }
+
+        private void gaCuoiUpdate_txt_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            gaCuoiUpdate_cbx.IsDropDownOpen = true;
+        }
+
+        private void tenCongTy_cbx_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            tenCongTy_cbx.IsDropDownOpen = true;
+        }
+
+        private void tenCongTyUpdate_cbx_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            tenCongTyUpdate_cbx.IsDropDownOpen = true;
+        }
+
+        private void tuyenTau_dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            viewModel.SelectedTuyenTau = (TuyenTau)tuyenTau_dataGrid.SelectedItem;
+        }
+        //**********Search*************
+        private void searchTuyenTau_txt_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchTuyenTau_txt_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchTuyenTau_txt.Text == "Bạn cần gì...")
+                searchTuyenTau_txt.Text = "";
+        }
+
+        private void searchTuyenTau_txt_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(searchTuyenTau_txt.Text))
+                searchTuyenTau_txt.Text = "Bạn cần gì...";
         }
     }
 }
