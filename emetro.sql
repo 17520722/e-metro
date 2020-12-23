@@ -74,7 +74,7 @@ CREATE TABLE VeTau
 (
 	maVe int primary key not null  auto_increment,
     maTuyen nvarchar(10) not null,
-    giaVe nvarchar(16) not null,
+    giaVe decimal(16, 0) not null,
     ngayMua date,
     tinhTrang varchar(10) not null,
     
