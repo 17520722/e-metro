@@ -52,11 +52,11 @@
     <Grid Uid="veTau" Width="1280" Height="700" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
         <StackPanel VerticalAlignment="Center">
-            <TextBox x:Name="loaiVe_txt" Template="{StaticResource TextBoxChangeTwoWay}" Text="Loại vé"/>
-            <TextBox x:Name="tuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tuyến"/>
-            <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
-            <TextBox x:Name="soLuongVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số lượng"/>
-            <Button x:Name="inVe_btn" Height="64" Width="142">
+            <TextBox x:Name="loaiVe_txt" Template="{StaticResource TextBoxChangeTwoWay}" Text="Loại vé" TextChanged="loaiVe_txt_TextChanged_1"/>
+            <TextBox x:Name="tuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tuyến" TextChanged="tuyenTau_txt_TextChanged"/>
+            <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé" TextChanged="giaVe_txt_TextChanged"/>
+            <TextBox x:Name="soLuongVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số lượng" TextChanged="soLuongVe_txt_TextChanged"/>
+            <Button x:Name="inVe_btn" Height="64" Width="142" Click="inVe_btn_Click">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>
@@ -69,5 +69,7 @@
                 </WrapPanel>
             </Button>
         </StackPanel>
+        <TextBox x:Name="ngayMua_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Ngày mua" TextChanged="ngayMua_txt_TextChanged" Margin="467,118,483,534" Width="Auto" Height="Auto"/>
+        <TextBox x:Name="tinhTrang_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tình trạng" TextChanged="tinhTrang_txt_TextChanged" Margin="467,61,483,587" Width="Auto" Height="Auto"/>
     </Grid>
 </Window>

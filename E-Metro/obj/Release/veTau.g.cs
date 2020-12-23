@@ -88,14 +88,6 @@ namespace E_Metro {
         #line default
         #line hidden
         
-        
-        #line 73 "..\..\veTau.xaml"
-        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
-        internal System.Windows.Controls.TextBox tinhTrang_txt;
-        
-        #line default
-        #line hidden
-        
         private bool _contentLoaded;
         
         /// <summary>
@@ -152,15 +144,6 @@ namespace E_Metro {
             
             #line 72 "..\..\veTau.xaml"
             this.ngayMua_txt.TextChanged += new System.Windows.Controls.TextChangedEventHandler(this.ngayMua_txt_TextChanged);
-            
-            #line default
-            #line hidden
-            return;
-            case 7:
-            this.tinhTrang_txt = ((System.Windows.Controls.TextBox)(target));
-            
-            #line 73 "..\..\veTau.xaml"
-            this.tinhTrang_txt.TextChanged += new System.Windows.Controls.TextChangedEventHandler(this.tinhTrang_txt_TextChanged);
             
             #line default
             #line hidden

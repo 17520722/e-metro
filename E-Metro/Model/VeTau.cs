@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace E_Metro.Model
 {
-    class VeTau
+    public class VeTau
     {
-        private String maVe { get; set; }
-        private String maTuyen { get; set; }
-        private decimal giaVe { get; set; }
-        private DateTime ngayMua { get; set; }
-        private String tinhTrang { get; set; }
+        private String maTuyen;
+        private String giaVe;
+        private String ngayMua;
+        private String tinhTrang;
+        private String loaiVe;
+        public String maVe { get; set; }
+        public String MaTuyen { get => maTuyen; set => maTuyen = value; }
+        public String GiaVe { get => giaVe; set => giaVe = value; }
+        public String NgayMua { get => ngayMua; set => ngayMua = value; }
+        public String TinhTrang { get => tinhTrang; set => tinhTrang = value; }
+        public String LoaiVe { get => loaiVe; set => loaiVe = value; }
+
     }
 }
