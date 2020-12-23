@@ -88,7 +88,7 @@
             <TextBlock  Text="Trang chính" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="10" Canvas.Top="10"  />
             <TextBlock  Text="Vé" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="210" Canvas.Top="10"  />
         </Canvas>
-        <TabControl Background="Transparent" FontSize="16" Margin="0 36 0 0">
+        <TabControl Background="Transparent" FontSize="16" Margin="0 36 0 0" >
             <TabControl.Resources>
                 <Style TargetType="TabItem">
                     <Setter Property="Template">
@@ -143,8 +143,8 @@
                 </TabItem.Header>
                 <StackPanel >
                     <WrapPanel x:Name="searchCongTy_wap" HorizontalAlignment="Right" Margin="0 10 0 0">
-                        <TextBox x:Name="searchCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" GotFocus="searchCongTy_txt_GotFocus" 
-                                 LostFocus="searchCongTy_txt_LostFocus" KeyUp="searchCongTy_txt_KeyUp"
+                        <TextBox x:Name="searchCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Bạn cần gì..." FontStyle="Italic" 
+                                 GotFocus="searchCongTy_txt_GotFocus" LostFocus="searchCongTy_txt_LostFocus" KeyUp="searchCongTy_txt_KeyUp"
                                  VerticalAlignment="Center" Margin="0 0 0 0" Height="38">
                             <TextBox.InputBindings>
                                 <KeyBinding Command="{Binding SearchCommand}" CommandParameter="{Binding Children, ElementName=searchCongTy_wap}" Key="Return"/>

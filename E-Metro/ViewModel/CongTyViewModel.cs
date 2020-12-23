@@ -265,7 +265,7 @@ namespace E_Metro.ViewModel
 
                     using (var command = con.CreateCommand())
                     {
-                        command.CommandText = "select * from Congty where (maCongTy like '%" + searchText + "%' or tenCongTy like '%" + searchText +
+                        command.CommandText = "select * from CongTy where (maCongTy like '%" + searchText + "%' or tenCongTy like '%" + searchText +
                             "%' or diaChiWeb like '%" + searchText + "%' or diaChiTruSo like '%" + searchText + "%' or sdt like '%" + searchText + "%')";
                         var reader = command.ExecuteReader();
 

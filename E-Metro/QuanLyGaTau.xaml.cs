@@ -24,15 +24,6 @@ namespace E_Metro
             InitializeComponent();
         }
 
-        public class GaTau
-        {
-            public string gaTauId { get; set; }
-            public string tenGaTau { get; set; }
-            public string moTaViTri { get; set; }
-            public string trangThai { get; set; }
-            public string lienKetSoDo { get; set; }
-        }
-
         private void maGaTau_txt_GotFocus(object sender, RoutedEventArgs e)
         {
             if (maGaTau_txt.Text == "Mã ga tàu")
@@ -81,5 +72,54 @@ namespace E_Metro
                 lienKetSoDoGaTau_txt.Text = "Liên kết sơ đồ ga tàu";
         }
 
+        private void TrangThai_cbb_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            trangThai_cbb.IsDropDownOpen = true;
+        }
+
+        private void SearchGaTau_txt_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchGaTau_txt.Text == "Bạn cần gì...")
+                searchGaTau_txt.Text = "";
+        }
+
+        private void SearchGaTau_txt_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(searchGaTau_txt.Text))
+                searchGaTau_txt.Text = "Bạn cần gì...";
+        }
+
+        private void SearchGaTau_txt_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void SearchGaTau2_txt_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (searchGaTau2_txt.Text == "Bạn cần gì...")
+                searchGaTau2_txt.Text = "";
+        }
+
+        private void SearchGaTau2_txt_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(searchGaTau2_txt.Text))
+                searchGaTau2_txt.Text = "Bạn cần gì...";
+        }
+
+        private void SearchGaTau2_txt_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void SuaGaTau_dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            viewModel.UpdateGaTau(e, suaGaTau_dataGrid);
+        }
     }
 }

@@ -8,7 +8,10 @@ namespace E_Metro.Model
 {
     public class TrangThaiGaTau
     {
-        private String maTTGaTau { get; set; }
-        private String trangThai { get; set; }
+        private String maTTGaTau;
+        private String trangThai;
+
+        public String MaTTGaTau { get => maTTGaTau; set => maTTGaTau = value; }
+        public String TrangThai { get => trangThai; set => trangThai = value; }
     }
 }

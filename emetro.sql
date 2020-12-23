@@ -31,7 +31,7 @@ CREATE TABLE GaTau
 	maGaTau nvarchar(10) primary key not null,
     tenGaTau varchar(45) not null,
     moTaViTri varchar(45) not null,
-    trangThai nvarchar(10) not null,
+    trangThai nvarchar(30) not null,
     anhGaTau varchar(60),
     
     foreign key (trangThai) references TrangThaiGaTau(maTTGaTau)

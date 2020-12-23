@@ -162,5 +162,12 @@ namespace E_Metro
         {
 
         }
+
+        private void ThemCongTy_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+       
     }
 }
