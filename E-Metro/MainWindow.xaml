@@ -96,7 +96,7 @@
             </Border>
             <TextBlock  Text="Quản lý" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="124" Canvas.Top="10"  />
             <TextBlock  Text="Trang chính" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="10" Canvas.Top="10"  />
-            <TextBlock  Text="Vé" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="210" Canvas.Top="10"  />
+            <TextBlock  Text="Vé" TextAlignment="left" FontFamily="Segoe UI"  FontSize="16" Foreground="#ff707070" Canvas.Left="210" Canvas.Top="10" PreviewMouseDown="TextBlock_PreviewMouseDown"  />
         </Canvas>
         
         <Canvas  Width="428" Height="210" Margin="0,280,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">

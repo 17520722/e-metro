@@ -1,5 +1,4 @@
 ﻿using E_Metro.Model;
-using E_Metro.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-
 namespace E_Metro
 {
     /// <summary>
@@ -26,44 +24,52 @@ namespace E_Metro
         {
             InitializeComponent();
         }
-        private void tinhTrang_txt_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
-        }
-        private void loaiVe_txt_TextChanged(object sender, TextChangedEventArgs e)
+        private void tenCongTy_GotFocus(object sender, RoutedEventArgs e)
         {
-
+            if (tenCongTy_txt.Text == "Tên công ty")
+                tenCongTy_txt.Text = "";
         }
 
-        private void ngayMua_txt_TextChanged(object sender, TextChangedEventArgs e)
+        private void tenCongTy_LostFocus(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(tenCongTy_txt.Text))
+                tenCongTy_txt.Text = "Tên công ty";
         }
 
-        private void inVe_btn_Click(object sender, RoutedEventArgs e)
+        private void giaVe_txt_GotFocus(object sender, RoutedEventArgs e)
         {
-           
-
+            if (giaVe_txt.Text == "Giá vé (vnđ)")
+                giaVe_txt.Text = "";
         }
 
-        private void loaiVe_txt_TextChanged_1(object sender, TextChangedEventArgs e)
+        private void giaVe_txt_LostFocus(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(giaVe_txt.Text))
+                giaVe_txt.Text = "Giá vé (vnđ)";
         }
 
-        private void tuyenTau_txt_TextChanged(object sender, TextChangedEventArgs e)
+        private void soLuongVe_txt_GotFocus(object sender, RoutedEventArgs e)
         {
-
+            if (soLuongVe_txt.Text == "Số lượng")
+                soLuongVe_txt.Text = "";
         }
 
-        private void giaVe_txt_TextChanged(object sender, TextChangedEventArgs e)
+        private void soLuongVe_txt_LostFocus(object sender, RoutedEventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(soLuongVe_txt.Text))
+                soLuongVe_txt.Text = "Số lượng";
         }
 
-        private void soLuongVe_txt_TextChanged(object sender, TextChangedEventArgs e)
+        private void tuyenTau_cbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            TuyenTau tuyenTau = (TuyenTau)tuyenTau_cbx.SelectedItem;
+            viewModel.LoadDataTicket(addVeTau_stp, tuyenTau);
+        }
 
+        private void tuyenTau_cbx_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            tuyenTau_cbx.IsDropDownOpen = true;
         }
     }
 }
