@@ -4,31 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:E_Metro"
+        xmlns:veTauViewModel="clr-namespace:E_Metro.ViewModel"
         mc:Ignorable="d"
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         Title="veTau" Height="700" Width="1280">
+    <Window.DataContext>
+        <veTauViewModel:VeTauViewModel x:Name="viewModel"></veTauViewModel:VeTauViewModel>
+    </Window.DataContext>
     <Window.Resources>
-        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
-            <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
-                <ScrollViewer x:Name="PART_ContentHost"/>
-            </Border>
-        </ControlTemplate>
-        <ControlTemplate x:Key="TextBoxChangeTwoWay" TargetType="{x:Type TextBoxBase}">
-            <Border Background="{TemplateBinding Background}" x:Name="Bd" CornerRadius="10">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <ScrollViewer x:Name="PART_ContentHost"/>
-                    <Button Grid.Column="1" Height="32" Width="32" Margin="0 0 5 0"
-                            Background="Transparent" BorderThickness="0">
-                        <Image Source="/assets/twoway.png"/>
-                    </Button>
-                </Grid>
-            </Border>
-        </ControlTemplate>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="FontSize" Value="16"/>
             <Setter Property="Height" Value="48"/>
@@ -48,15 +32,42 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Margin" Value="0 48 0 0"/>
         </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Width" Value="330"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="#ff707070"/>
+            <Setter Property="Margin" Value="0 16 16 0"/>
+            <Setter Property="Padding" Value="16 0 0 0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsEditable" Value="True"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
     </Window.Resources>
     <Grid Uid="veTau" Width="1280" Height="700" Background="#ff633636" ClipToBounds="True">
         <Image Source="/assets/back.png" Stretch="Fill"/>
-        <StackPanel VerticalAlignment="Center">
-            <TextBox x:Name="loaiVe_txt" Template="{StaticResource TextBoxChangeTwoWay}" Text="Loại vé"/>
-            <TextBox x:Name="tuyenTau_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tuyến"/>
-            <TextBox x:Name="giaVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Giá vé"/>
-            <TextBox x:Name="soLuongVe_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số lượng"/>
-            <Button x:Name="inVe_btn" Height="64" Width="142">
+        <StackPanel x:Name="addVeTau_stp" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Margin="0 0 64 0">
+                <Button x:Name="changeLoaiVe_btn" Height="48" Width="48" Background="White" 
+                    BorderThickness="0" Padding="10" Margin="0 16 16 0"
+                    Command="{Binding ChangeTypeOfTicketCommand}" CommandParameter="{Binding ElementName=loaiVe_txt}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="50"/>
+                        </Style>
+                    </Button.Resources>
+                    <Image Source="/assets/twoway.png"/>
+                </Button>
+                <TextBox x:Name="loaiVe_txt" Text="Loại vé: Thường" IsReadOnly="True"/>
+            </StackPanel>
+            <ComboBox x:Name="tuyenTau_cbx" Text="Tuyến" ItemsSource="{Binding ListTuyenTau}"
+                      DisplayMemberPath="TenTuyen" SelectedValuePath="MaTuyen" SelectionChanged="tuyenTau_cbx_SelectionChanged" MouseUp="tuyenTau_cbx_MouseUp"/>
+            <TextBox x:Name="tenCongTy_txt" Text="Tên công ty" GotFocus="tenCongTy_GotFocus" LostFocus="tenCongTy_LostFocus"/>
+            <TextBox x:Name="giaVe_txt" Text="Giá vé (vnđ)" GotFocus="giaVe_txt_GotFocus" LostFocus="giaVe_txt_LostFocus"/>
+            <TextBox x:Name="soLuongVe_txt" Text="Số lượng" GotFocus="soLuongVe_txt_GotFocus" LostFocus="soLuongVe_txt_LostFocus"/>
+            <Button x:Name="inVe_btn" Height="64" Width="142"
+                    Command="{Binding AddCommand}" CommandParameter="{Binding Children, ElementName=addVeTau_stp}">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="10"/>

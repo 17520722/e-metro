@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Git\e-metro\e-metro\E-Metro\obj\Debug\
+C:\Users\NQT Edward\Desktop\New folder (2)\e-metro\E-Metro\obj\Release\
 E_Metro
 none
 false
-DEBUG;TRACE
-D:\Git\e-metro\e-metro\E-Metro\App.xaml
+TRACE
+C:\Users\NQT Edward\Desktop\New folder (2)\e-metro\E-Metro\App.xaml
 7-2066473064
 
-251815036674
-741881929454
+23-1575253549
+212060783411
 DangNhap.xaml;MainWindow.xaml;QuanLyCongTy.xaml;QuanLyGaTau.xaml;QuanLyTuyenTau.xaml;ResourcesXAML\MainResources.xaml;veTau.xaml;
 
-False
+True
 

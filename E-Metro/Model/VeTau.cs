@@ -8,10 +8,24 @@ namespace E_Metro.Model
 {
     class VeTau
     {
-        private String maVe { get; set; }
-        private String maTuyen { get; set; }
-        private decimal giaVe { get; set; }
-        private DateTime ngayMua { get; set; }
-        private String tinhTrang { get; set; }
+        private String maVe;
+        private String maTuyen;
+        private String loaiVe;
+        private decimal giaVe;
+        private String ngayMua;
+        private String tinhTrang;
+
+        public String Mave { get => maVe; set => maVe = value; }
+        public String MaTuyen { get => maTuyen; set => maTuyen = value; }
+        public String LoaiVe { get => loaiVe; set => loaiVe = value; }
+        public decimal GiaVe { get => giaVe; set => giaVe = value; }
+        public String NgayMua { get => ngayMua; set => ngayMua = value; }
+        public String TinhTrang { get => tinhTrang; set => tinhTrang = value; }
+    }
+
+    public enum LoaiVeEnum
+    {
+        Thuong = 0,
+        Thang = 1,
     }
 }

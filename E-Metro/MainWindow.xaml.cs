@@ -87,5 +87,13 @@ namespace E_Metro
         {
 
         }
+
+        private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.Hide();
+            veTau ve = new veTau();
+            ve.ShowDialog();
+            this.Show();
+        }
     }
 }

@@ -27,7 +27,7 @@ namespace E_Metro.ViewModel
         public CongTyViewModel()
         {
             listCongTy = new ObservableCollection<CongTy>();
-            MySqlLoadDataCongTy();
+            MySqlLoadDataCongTy();  
             AddCommand = new RelayCommand<UIElementCollection>((p) => true, AddCongTy);
             SearchCommand = new RelayCommand<UIElementCollection>((p) => true, SearchCongTy);
         }
@@ -151,6 +151,7 @@ namespace E_Metro.ViewModel
                 }
             }
         }
+
         public void MySqlLoadDataCongTy()
         {
             using (con)
@@ -295,7 +296,9 @@ namespace E_Metro.ViewModel
                 }
             }
         }
+
         public ICommand AddCommand { get; set; }
         public ICommand SearchCommand { get; set; }
+
     }
 }

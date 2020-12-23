@@ -4,17 +4,29 @@
 winexe
 C#
 .cs
+<<<<<<< HEAD
 D:\Git\e-metro\e-metro\E-Metro\obj\Debug\
+=======
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\obj\Debug\
+>>>>>>> c5c5ea27f569db894fc3bdf17227b27782320a1e
 E_Metro
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 D:\Git\e-metro\e-metro\E-Metro\App.xaml
 7-2066473064
 
 28-790811019
 21-2041098769
+=======
+D:\Study\PhatTrienVanHanhBTPM\Project\E-Metro\E-Metro\App.xaml
+7-2066473064
+
+25-1632256300
+21-1322615182
+>>>>>>> c5c5ea27f569db894fc3bdf17227b27782320a1e
 DangNhap.xaml;MainWindow.xaml;QuanLyCongTy.xaml;QuanLyGaTau.xaml;QuanLyTuyenTau.xaml;ResourcesXAML\MainResources.xaml;veTau.xaml;
 
-False
+True
 
