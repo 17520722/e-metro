@@ -42,9 +42,7 @@ namespace E_Metro
 
         private void inVe_btn_Click(object sender, RoutedEventArgs e)
         {
-            veTau a =  new veTau();
-            var viewModel = new VeViewModel();
-            viewModel.AddVeTau(a);
+           
 
         }
 
