@@ -18,7 +18,12 @@ namespace E_Metro.Model
         public String TenGaTau { get => tenGaTau; set => tenGaTau = value; }
         public String MoTaViTri { get => moTaViTri; set => moTaViTri = value; }
         public String TrangThai { get => trangThai; set => trangThai = value; }
-        public String AnhGaTau { get => anhGaTau; set => anhGaTau = value; } 
+        public String AnhGaTau { get => anhGaTau; set => anhGaTau = value; }
+
+        public GaTau ShallowCopy()
+        {
+            return (GaTau)this.MemberwiseClone();
+        }
     }
     public enum TrangThaiEnum
     {

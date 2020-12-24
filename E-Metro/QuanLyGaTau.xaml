@@ -157,7 +157,7 @@
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
                         <DataGrid x:Name="gaTau_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"
-                                  IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListGaTau}">
+                                  IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListShowTau}">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -180,6 +180,11 @@
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="Green"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
@@ -222,8 +227,8 @@
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
                         <DataGrid x:Name="suaGaTau_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"
-                                  AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ListGaTau}" 
-                                  CellEditEnding="SuaGaTau_dataGrid_CellEditEnding">
+                                  AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ListShowTau}" 
+                                  CellEditEnding="SuaGaTau_dataGrid_CellEditEnding" MouseDoubleClick="suaGaTau_dataGrid_MouseDoubleClick">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -246,14 +251,19 @@
                                             </ControlTemplate>
                                         </Setter.Value>
                                     </Setter>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Foreground" Value="Green"/>
+                                        </Trigger>
+                                    </Style.Triggers>
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Sửa" Width="60"/>
-                                <DataGridTextColumn Header="Mã ga tàu" Width="120" Binding="{Binding MaGaTau}"/>
+                                <DataGridTextColumn Header="Mã ga tàu" Width="120" Binding="{Binding MaGaTau}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Tên ga tàu" Width="340" Binding="{Binding TenGaTau}"/>
                                 <DataGridTextColumn Header="Mô tả vị trí" Width="280"  Binding="{Binding MoTaViTri}"/>
-                                <DataGridTextColumn Header="Tình trạng" Width="256" Binding="{Binding TrangThai}"/>
+                                <DataGridTextColumn Header="Tình trạng" Width="256" Binding="{Binding TrangThai}" IsReadOnly="True"/>
                                 <DataGridTextColumn Header="Liên kết sơ đồ ga tàu" Width="*" Binding="{Binding AnhGaTau}"/>
                             </DataGrid.Columns>
                         </DataGrid>

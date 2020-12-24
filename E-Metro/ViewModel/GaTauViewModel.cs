@@ -1,17 +1,11 @@
 ﻿using E_Metro.Model;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using Xceed.Wpf.Toolkit;
 
 namespace E_Metro.ViewModel
 {
@@ -22,16 +16,20 @@ namespace E_Metro.ViewModel
         private ObservableCollection<GaTau> listGaTau;
         public ObservableCollection<GaTau> ListGaTau { get => listGaTau; set => listGaTau = value; }
 
+        private ObservableCollection<GaTau> lisShowtGaTau;
+        public ObservableCollection<GaTau> ListShowTau { get => lisShowtGaTau; set => lisShowtGaTau = value; }
+
         private ObservableCollection<TrangThaiGaTau> listTrangThai;
         public ObservableCollection<TrangThaiGaTau> ListTrangThai { get => listTrangThai; set => listTrangThai = value; }
 
 
-    public GaTauViewModel()
+        public GaTauViewModel()
         {
             listGaTau = new ObservableCollection<GaTau>();
             listTrangThai = new ObservableCollection<TrangThaiGaTau>();
-            MySqlLoadDataGaTau();
+            lisShowtGaTau = new ObservableCollection<GaTau>();
             MySqlTrangThai();
+            MySqlLoadDataGaTau();
             AddCommand = new RelayCommand<UIElementCollection>((p) => true, AddGaTau);
             SearchCommand = new RelayCommand<UIElementCollection>((p) => true, SearchGaTau);
         }
@@ -62,7 +60,7 @@ namespace E_Metro.ViewModel
                         case "lienKetSoDoGaTau_txt":
                             lienKetSoDoGaTau = textB.Text;
                             break;
-                    }       
+                    }
                 }
                 else if (item is ComboBox)
                 {
@@ -122,6 +120,21 @@ namespace E_Metro.ViewModel
                 MySqlSearchGaTau(searchTextGaTau);
             }
         }
+
+        private GaTau ChangeTextGaTau(GaTau gaTau)
+        {
+            GaTau ga = gaTau.ShallowCopy();
+            foreach (var item in ListTrangThai)
+            {
+                if (item.MaTTGaTau == ga.TrangThai)
+                {
+                    ga.TrangThai = item.TrangThai;
+                    break;
+                }     
+            }
+            return ga;
+        }
+
         public void UpdateGaTau(DataGridCellEditEndingEventArgs e, DataGrid dataGrid)
         {
             if (e.EditAction == DataGridEditAction.Commit)
@@ -142,12 +155,6 @@ namespace E_Metro.ViewModel
                         gaTau.MoTaViTri = (e.EditingElement as TextBox).Text;
                         MySqlUpdateGaTau(gaTau);
                     }
-                    if (bindingPath == "TrangThai")
-                    {
-                        GaTau gaTau = (dataGrid.SelectedItem as GaTau);
-                        gaTau.TrangThai = (e.EditingElement as ComboBox).Text;
-                        MySqlUpdateGaTau(gaTau);
-                    }
                     if (bindingPath == "AnhGaTau")
                     {
                         GaTau gaTau = (dataGrid.SelectedItem as GaTau);
@@ -157,6 +164,38 @@ namespace E_Metro.ViewModel
                 }
             }
         }
+        public void UpdateTrangThai(DataGrid dataGrid)
+        {
+            if (dataGrid.CurrentColumn.Header.ToString() == "Tình trạng")
+            {
+                GaTau gaTau = dataGrid.SelectedItem as GaTau;
+                
+                for (int i = 0; i < ListTrangThai.Count; i++)
+                {
+                    if (gaTau.TrangThai == ListTrangThai[i].TrangThai)
+                    {
+                        if (i - ListTrangThai.Count == -1)
+                        {
+                            string maTrangThai = "";
+                            gaTau.TrangThai = ListTrangThai[0].TrangThai;
+                            maTrangThai = ListTrangThai[0].MaTTGaTau;
+                            MySqlUpdateTrangThai(maTrangThai, gaTau.MaGaTau);
+                            break;
+                        }
+                        else if (i - ListTrangThai.Count < -1)
+                        {
+                            string maTrangThai = "";
+                            gaTau.TrangThai = ListTrangThai[i + 1].TrangThai;
+                            maTrangThai = ListTrangThai[i + 1].MaTTGaTau;
+                            MySqlUpdateTrangThai(maTrangThai, gaTau.MaGaTau);
+                            break;
+                        }      
+                    }
+                }
+            }
+        }
+
+
         public void MySqlUpdateGaTau(GaTau gaTau)
         {
             using (con)
@@ -168,7 +207,7 @@ namespace E_Metro.ViewModel
 
                     using (var command = con.CreateCommand())
                     {
-                        command.CommandText = "update GaTau set tenGaTau = '" + gaTau.TenGaTau + "', moTaViTri = '" + gaTau.MoTaViTri + "', trangThai = '" + gaTau.TrangThai + "', anhGaTau = '" + gaTau.AnhGaTau + "' where maGaTau = '" + gaTau.MaGaTau + "'";
+                        command.CommandText = "update GaTau set tenGaTau = '" + gaTau.TenGaTau + "', moTaViTri = '" + gaTau.MoTaViTri + "', anhGaTau = '" + gaTau.AnhGaTau + "' where maGaTau = '" + gaTau.MaGaTau + "'";
 
                         var reader = command.ExecuteReader();
 
@@ -186,6 +225,36 @@ namespace E_Metro.ViewModel
                 }
             }
         }
+        public void MySqlUpdateTrangThai(string trangThai, string maGaTau)
+        {
+            using (con)
+            {
+                try
+                {
+                    con.Open();
+                    Console.WriteLine("Connection Success!");
+       
+                    using (var command = con.CreateCommand())
+                    {
+                        command.CommandText = "update GaTau set trangThai = '" + trangThai + "' where maGaTau = '" + maGaTau+ "'";
+
+                        var reader = command.ExecuteReader();
+
+                        Console.WriteLine("Cap Nhat thanh cong!");
+                    }          
+                }
+                catch (MySqlException ex)
+                {
+                    Console.WriteLine("Connection Fail!");
+                    System.Windows.MessageBox.Show(ex.ToString());
+                }
+                finally
+                {
+                    Console.WriteLine("Disconnection Success!");
+                }
+            }
+            MySqlLoadDataGaTau();
+        }
         public void MySqlLoadDataGaTau()
         {
             using (con)
@@ -195,6 +264,7 @@ namespace E_Metro.ViewModel
                     con.Open();
                     Console.WriteLine("Connection Success!");
                     ListGaTau.Clear();
+                    ListShowTau.Clear();
                     using (var command = con.CreateCommand())
                     {
                         command.CommandText = "select * from GaTau";
@@ -211,8 +281,8 @@ namespace E_Metro.ViewModel
                                 TrangThai = reader["trangThai"].ToString(),
                                 AnhGaTau = reader["anhGaTau"].ToString(),
                             };
-
                             ListGaTau.Add(gaTau);
+                            ListShowTau.Add(ChangeTextGaTau(gaTau));
                         }
                         Console.WriteLine("Load du lieu ga tau thanh cong !!!!!!!!!!!!!!");
                     }
@@ -245,6 +315,7 @@ namespace E_Metro.ViewModel
                         var reader = command.ExecuteReader();
 
                         ListGaTau.Add(gaTau);
+                        ListShowTau.Add(gaTau);
                         System.Windows.MessageBox.Show("Them moi ga tau thanh cong!");
                     }
                 }
@@ -268,11 +339,11 @@ namespace E_Metro.ViewModel
                     con.Open();
                     Console.WriteLine("Connection Success!");
                     ListGaTau.Clear();
-
+                    ListShowTau.Clear();
                     using (var command = con.CreateCommand())
                     {
                         command.CommandText = "select * from GaTau where (maGaTau like '%" + searchText + "%' or tenGaTau like '%" + searchText +
-                            "%' or moTaViTri like '%" + searchText + "%' or trangThai like '%" + searchText + "%' or anhGaTau like '%" + searchText + "%')";
+                            "%' or moTaViTri like '%" + searchText + "%' or anhGaTau like '%" + searchText + "%')";
                         var reader = command.ExecuteReader();
 
                         while (reader.Read())
@@ -286,6 +357,7 @@ namespace E_Metro.ViewModel
                                 AnhGaTau = reader["anhGaTau"].ToString(),
                             };
                             ListGaTau.Add(gaTau);
+                            ListShowTau.Add(ChangeTextGaTau(gaTau));
                         }
                         Console.WriteLine("Load du lieu ga tau thanh cong !!!!!!!!!!!!!!");
                     }
@@ -309,7 +381,6 @@ namespace E_Metro.ViewModel
                 {
                     con.Open();
                     Console.WriteLine("Connection Success!");
-                    ListGaTau.Clear();
 
                     using (var command = con.CreateCommand())
                     {
@@ -338,6 +409,7 @@ namespace E_Metro.ViewModel
                 }
             }
         }
+
         public ICommand AddCommand { get; set; }
         public ICommand SearchCommand { get; set; }
     }

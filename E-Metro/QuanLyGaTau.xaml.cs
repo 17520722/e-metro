@@ -1,4 +1,5 @@
-﻿using System;
+﻿using E_Metro.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -120,6 +121,11 @@ namespace E_Metro
         private void SuaGaTau_dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             viewModel.UpdateGaTau(e, suaGaTau_dataGrid);
+        }
+
+        private void suaGaTau_dataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            viewModel.UpdateTrangThai(suaGaTau_dataGrid);
         }
     }
 }
