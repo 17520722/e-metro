@@ -166,7 +166,7 @@ namespace E_Metro.ViewModel
                         var reader = command.ExecuteReader();
 
                         ListVeTau.Add(veTau);
-                        MessageBox.Show("Thêm mới thành công!");
+                        MessageBox.Show("Đã in vé!");
                     }
                 }
                 catch (MySqlException ex)
