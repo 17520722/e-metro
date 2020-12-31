@@ -48,6 +48,7 @@ namespace E_Metro.ViewModel
             String tinhTrang = "";
             decimal giaVe = 0;
             String ngayMua = "";
+            int soLuong = 0;
 
             foreach (var item in p)
             {
@@ -57,7 +58,16 @@ namespace E_Metro.ViewModel
                     switch (textB.Name)
                     {
                         case "giaVe_txt":
-                            giaVe = decimal.Parse(textB.Text);
+                            if (string.IsNullOrWhiteSpace(textB.Text) || textB.Text == "Giá vé (vnđ)")
+                                giaVe = 0;
+                            else
+                                giaVe = decimal.Parse(textB.Text);
+                            break;
+                        case "soLuongVe_txt":
+                            if (string.IsNullOrWhiteSpace(textB.Text) || textB.Text == "Số lượng")
+                                soLuong = 0;
+                            else
+                                soLuong = int.Parse(textB.Text);
                             break;
                     }
                 }
@@ -85,11 +95,11 @@ namespace E_Metro.ViewModel
 
             ngayMua = DateTime.Now.ToString("yyyy/MM/dd");
 
-            if (string.IsNullOrEmpty(maTuyen) || string.IsNullOrEmpty(loaiVe) || string.IsNullOrEmpty(ngayMua) || giaVe <= 0)
+            if (string.IsNullOrEmpty(maTuyen) || string.IsNullOrEmpty(loaiVe) || string.IsNullOrEmpty(ngayMua) || giaVe <= 0 || soLuong <= 0)
             {
                 return;
             }
-            if (string.Compare(maTuyen, "Mã công ty") == 0 || string.Compare(loaiVe, "Tên công ty") == 0 ||
+            if (string.Compare(maTuyen, "Mã công ty") == 0 || string.Compare(loaiVe, "Tên công ty") == 0 || string.Compare(soLuong.ToString(), "Số lượng") == 0||
                 string.Compare(ngayMua, "Địa chỉ website") == 0 || string.Compare(giaVe.ToString(), "Giá vé (vnđ)") == 0)
             {
                 return;
