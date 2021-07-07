@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -144,9 +145,13 @@ namespace E_Metro.ViewModel
                     }
                     if (bindingPath == "Sdt")
                     {
+                        Regex regex = new Regex("[^0-9]+");
                         CongTy congTy = (dataGrid.SelectedItem as CongTy);
-                        congTy.Sdt = (e.EditingElement as TextBox).Text;
-                        MySqlUpdateCongTy(congTy);
+                        if (!regex.IsMatch(congTy.Sdt))
+                        {
+                            congTy.Sdt = (e.EditingElement as TextBox).Text;
+                            MySqlUpdateCongTy(congTy);
+                        }
                     }
                 }
             }
@@ -211,7 +216,7 @@ namespace E_Metro.ViewModel
                         var reader = command.ExecuteReader();
 
                         ListCongTy.Add(congTy);
-                        System.Windows.MessageBox.Show("Them moi thanh cong!");
+                        System.Windows.MessageBox.Show("Thêm mới công ty thành công!");
                     }
                 }
                 catch (MySqlException ex)
@@ -240,7 +245,6 @@ namespace E_Metro.ViewModel
 
                         var reader = command.ExecuteReader();
 
-                        Console.WriteLine("Cap Nhat thanh cong!");
                     }
                 }
                 catch (MySqlException ex)

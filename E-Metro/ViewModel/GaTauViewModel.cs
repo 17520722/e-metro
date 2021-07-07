@@ -316,7 +316,7 @@ namespace E_Metro.ViewModel
 
                         ListGaTau.Add(gaTau);
                         ListShowTau.Add(gaTau);
-                        System.Windows.MessageBox.Show("Them moi ga tau thanh cong!");
+                        System.Windows.MessageBox.Show("Thêm mới ga tàu thành công!");
                     }
                 }
                 catch (MySqlException ex)
