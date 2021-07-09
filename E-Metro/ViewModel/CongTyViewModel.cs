@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,7 +19,7 @@ namespace E_Metro.ViewModel
 {
     public class CongTyViewModel
     {
-        MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+        MySqlConnection con = new MySqlConnection("Server=localhost;userid=root;password=Emetro123456;Database=emetro");
 
         private ObservableCollection<CongTy> listCongTy;
 
@@ -28,11 +29,11 @@ namespace E_Metro.ViewModel
         {
             listCongTy = new ObservableCollection<CongTy>();
             MySqlLoadDataCongTy();  
-            AddCommand = new RelayCommand<UIElementCollection>((p) => true, AddCongTy);
-            SearchCommand = new RelayCommand<UIElementCollection>((p) => true, SearchCongTy);
+            AddCommand = new RelayCommand<UIElementCollection>((p) => true, InputAddCongTy);
+            SearchCommand = new RelayCommand<UIElementCollection>((p) => true, InputSearchCongTy);
         }
         // processor
-        private void AddCongTy(UIElementCollection p)
+        public void InputAddCongTy(UIElementCollection p)
         {
             String maCongTy = "";
             String tenCongTy = "";
@@ -64,17 +65,21 @@ namespace E_Metro.ViewModel
                         break;
                 }
             }
-
+            AddCongTy(maCongTy, tenCongTy, diaChiWeb, diaChiTruSo, sdt);
+        }
+        
+        public int AddCongTy(String maCongTy, String tenCongTy, String diaChiWeb, String diaChiTruSo, String sdt)
+        {
             if (string.IsNullOrEmpty(maCongTy) || string.IsNullOrEmpty(tenCongTy) || string.IsNullOrEmpty(diaChiWeb) ||
                 string.IsNullOrEmpty(diaChiTruSo) || string.IsNullOrEmpty(sdt))
             {
-                return;
+                return 0;
             }
             if (string.Compare(maCongTy, "Mã công ty") == 0 || string.Compare(tenCongTy, "Tên công ty") == 0 ||
                 string.Compare(diaChiWeb, "Địa chỉ website") == 0 || string.Compare(diaChiTruSo, "Địa chỉ trụ sở chính") == 0 ||
                 string.Compare(sdt, "Số điện thoại") == 0)
             {
-                return;
+                return 0;
             }
 
             CongTy cty = new CongTy()
@@ -85,10 +90,12 @@ namespace E_Metro.ViewModel
                 DiaChiTruSo = diaChiTruSo,
                 Sdt = sdt
             };
-
+            Console.WriteLine("Hello 000000000000000");
             MySqlAddCongTy(cty);
+            return 1;
         }         
-        private void SearchCongTy(UIElementCollection p)
+        
+        public void InputSearchCongTy(UIElementCollection p)
         {
             String searchTextCongTy = "";
 
@@ -107,15 +114,23 @@ namespace E_Metro.ViewModel
                         break;
                 }
             }
+            SearchCongTy(searchTextCongTy);
+        }
+        
+        public int SearchCongTy(String searchTextCongTy)
+        {     
             if (searchTextCongTy == "Bạn cần gì..." || string.IsNullOrEmpty(searchTextCongTy))
             {
                 MySqlLoadDataCongTy();
+                return 0;
             }
             else
             {
                 MySqlSearchCongTy(searchTextCongTy);
+                return 1;
             }
         }
+
         public void UpdateCongTy(DataGridCellEditEndingEventArgs e, DataGrid dataGrid)
         {
             if (e.EditAction == DataGridEditAction.Commit)
@@ -144,9 +159,13 @@ namespace E_Metro.ViewModel
                     }
                     if (bindingPath == "Sdt")
                     {
+                        Regex regex = new Regex("[^0-9]+");
                         CongTy congTy = (dataGrid.SelectedItem as CongTy);
-                        congTy.Sdt = (e.EditingElement as TextBox).Text;
-                        MySqlUpdateCongTy(congTy);
+                        if (!regex.IsMatch(congTy.Sdt))
+                        {
+                            congTy.Sdt = (e.EditingElement as TextBox).Text;
+                            MySqlUpdateCongTy(congTy);
+                        }
                     }
                 }
             }
@@ -194,7 +213,8 @@ namespace E_Metro.ViewModel
                 }
             }
         }
-        public void MySqlAddCongTy(CongTy congTy)
+        
+        public int MySqlAddCongTy(CongTy congTy)
         {
             using (con)
             {
@@ -206,18 +226,21 @@ namespace E_Metro.ViewModel
                     using (var command = con.CreateCommand())
                     {
                         command.CommandText = "insert into CongTy(maCongTy, tenCongTy, diaChiWeb, diaChiTruSo, sdt) " +
-                            "values ('" + congTy.MaCongTy + "', N'" + congTy.TenCongTy + "', '" + congTy.DiaChiWeb + "', '" + congTy.DiaChiTruSo + "', '" + congTy.Sdt + "')";
+                            "values ('" + congTy.MaCongTy + "', N'" + congTy.TenCongTy + "', '" + congTy.DiaChiWeb + "', '" + 
+                            congTy.DiaChiTruSo + "', '" + congTy.Sdt + "')";
 
                         var reader = command.ExecuteReader();
 
                         ListCongTy.Add(congTy);
-                        System.Windows.MessageBox.Show("Them moi thanh cong!");
+                        System.Windows.MessageBox.Show("Thêm mới công ty thành công!");
                     }
+                    return 1;
                 }
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Connection Fail!");
                     System.Windows.MessageBox.Show(ex.ToString());
+                    return 0;
                 }
                 finally
                 {
@@ -225,7 +248,8 @@ namespace E_Metro.ViewModel
                 }
             }
         }
-        public void MySqlUpdateCongTy(CongTy congTy)
+        
+        public int MySqlUpdateCongTy(CongTy congTy)
         {
             using (con)
             {
@@ -239,14 +263,14 @@ namespace E_Metro.ViewModel
                         command.CommandText = "update CongTy set tenCongTy = '" + congTy.TenCongTy + "', diaChiWeb = '" + congTy.DiaChiWeb + "', diaChiTruSo = '" + congTy.DiaChiTruSo + "', sdt = '" + congTy.Sdt + "' where maCongTy = '" + congTy.MaCongTy + "'";
 
                         var reader = command.ExecuteReader();
-
-                        Console.WriteLine("Cap Nhat thanh cong!");
                     }
+                    return 1;
                 }
                 catch (MySqlException ex)
                 {
                     Console.WriteLine("Connection Fail!");
                     System.Windows.MessageBox.Show(ex.ToString());
+                    return 0;
                 }
                 finally
                 {

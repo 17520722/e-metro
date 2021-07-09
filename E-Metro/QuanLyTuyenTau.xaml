@@ -83,7 +83,6 @@
         </Style>
     </Window.Resources>
     <Grid Uid="QuanLyTuyenTau" Width="1280" Height="700" ClipToBounds="True">
-
         <TabControl Background="Transparent" FontSize="16" >
             <TabControl.Resources>
                 <Style TargetType="TabItem">
@@ -195,7 +194,7 @@
                         </Button>
                     </WrapPanel>
                     <Grid x:Name="searchTuyenTau_grid" Background="Transparent" Margin="0 16 0 0">
-                        <DataGrid x:Name="tuyenTau_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"
+                        <DataGrid x:Name="tuyenTau_dataGrid" Height="450" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center" ScrollViewer.CanContentScroll="True"
                                   IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListSearchTuyenTau}" SelectedItem="{Binding SelectedTuyenTau}" SelectionChanged="tuyenTau_dataGrid_SelectionChanged">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">

@@ -557,6 +557,7 @@ namespace E_Metro.ViewModel
 
                         ListTuyenTau.Add(tuyenTau);
                         ListSearchTuyenTau.Add(LayNoiDungTuyen(tuyenTau));
+                        Console.WriteLine("AAAAAA " + tuyenTau);
 
                         System.Windows.MessageBox.Show("Thêm mới tuyến tàu thành công!");
                     }

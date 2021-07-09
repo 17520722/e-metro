@@ -156,8 +156,8 @@
                         </Button>
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
-                        <DataGrid x:Name="gaTau_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"
-                                  IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListShowTau}">
+                        <DataGrid x:Name="gaTau_dataGrid" Height="400" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"
+                                  IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListShowTau}" ScrollViewer.CanContentScroll="True">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -226,8 +226,8 @@
                         <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu vừa mới chỉnh sửa</TextBlock>
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
-                        <DataGrid x:Name="suaGaTau_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"
-                                  AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ListShowTau}" 
+                        <DataGrid x:Name="suaGaTau_dataGrid" Height="400" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"
+                                  AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ListShowTau}" ScrollViewer.CanContentScroll="True"
                                   CellEditEnding="SuaGaTau_dataGrid_CellEditEnding" MouseDoubleClick="suaGaTau_dataGrid_MouseDoubleClick">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">

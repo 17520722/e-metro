@@ -112,7 +112,6 @@ namespace E_Metro.ViewModel
                 GiaVe = giaVe,
                 TinhTrang = tinhTrang,
                 NgayMua = ngayMua,
-
             };
 
             MySqlAddVeTau(vt);
@@ -170,8 +169,8 @@ namespace E_Metro.ViewModel
 
                     using (var command = con.CreateCommand())
                     {
-                        command.CommandText = "insert into VeTau(maTuyen, loaiVe, giaVe, ngayMua) " +
-                            "values ('" + veTau.MaTuyen + "', N'" + veTau.LoaiVe + "', '" + veTau.GiaVe + "','" + veTau.NgayMua + "')";
+                        command.CommandText = "insert into VeTau(maTuyen, loaiVe, giaVe, ngayMua, tinhTrang) " +
+                            "values ('" + veTau.MaTuyen + "', N'" + veTau.LoaiVe + "', '" + veTau.GiaVe + "','" + veTau.NgayMua + "','" + veTau.TinhTrang + "')";
 
                         var reader = command.ExecuteReader();
 

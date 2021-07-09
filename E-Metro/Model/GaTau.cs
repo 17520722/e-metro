@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_Metro.Model
 {
-    class GaTau
+    public class GaTau
     {
         private String maGaTau;
         private String tenGaTau;

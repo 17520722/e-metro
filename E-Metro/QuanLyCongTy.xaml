@@ -126,7 +126,7 @@
                     <TextBox x:Name="tenCongTy_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Tên công ty" GotFocus="tenCongTy_txt_GotFocus" LostFocus="tenCongTy_txt_LostFocus"/>
                     <TextBox x:Name="diaChiWeb_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Địa chỉ website" GotFocus="diaChiWeb_txt_GotFocus" LostFocus="diaChiWeb_txt_LostFocus"/>
                     <TextBox x:Name="truSo_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Địa chỉ trụ sở chính" GotFocus="truSo_txt_GotFocus" LostFocus="truSo_txt_LostFocus"/>
-                    <TextBox x:Name="sdt_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số điện thoại" GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus"/>
+                    <TextBox x:Name="sdt_txt" Template="{StaticResource TextBoxBaseControlTemplate}" Text="Số điện thoại" GotFocus="sdt_txt_GotFocus" LostFocus="sdt_txt_LostFocus" PreviewTextInput="sdt_txt_PreviewTextInput"/>
                     <Button x:Name="themCongTy_btn" Content="Thêm mới công ty" 
                             Command="{Binding AddCommand}" CommandParameter="{Binding Children, ElementName=themCongTy_stp}">
                         <Button.Resources>
@@ -156,7 +156,8 @@
                         </Button>
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
-                        <DataGrid x:Name="congTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center" 
+                        <DataGrid x:Name="congTy_dataGrid" Height="400" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center"          
+                                  ScrollViewer.CanContentScroll="True"
                                   IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding ListCongTy}">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
@@ -175,7 +176,7 @@
                                             <ControlTemplate TargetType="{x:Type DataGridCell}">
                                                 <Grid Background="{TemplateBinding Background}">
                                                     <ContentPresenter VerticalAlignment="Center" 
-                                                                      HorizontalAlignment="Center"/>
+                                                                    HorizontalAlignment="Center"/>
                                                 </Grid>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -188,7 +189,7 @@
                                 </Style>
                             </DataGrid.Resources>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Mã công ty" Width="120" Binding="{Binding MaCongTy}"/>
+                                <DataGridTextColumn Header="Mã công ty" Width="*" Binding="{Binding MaCongTy}"/>
                                 <DataGridTextColumn Header="Tên công ty" Width="360" Binding="{Binding TenCongTy}"/>
                                 <DataGridTextColumn Header="Địa chỉ website" Width="360"  Binding="{Binding DiaChiWeb}"/>
                                 <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding DiaChiTruSo}"/>
@@ -226,9 +227,9 @@
                         <TextBlock Padding="5 0 0 0" Foreground="White">Dữ liệu vừa mới chỉnh sửa</TextBlock>
                     </WrapPanel>
                     <Grid Background="Transparent" Margin="0 16 0 0">
-                        <DataGrid x:Name="suaCongTy_dataGrid" Height="auto" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center" 
+                        <DataGrid x:Name="suaCongTy_dataGrid" Height="400" Background="Transparent" BorderBrush="#BABABA" VerticalContentAlignment="Center" 
                                   AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding ListCongTy}" 
-                                  CellEditEnding="suaCongTy_dataGrid_CellEditEnding">
+                                  CellEditEnding="suaCongTy_dataGrid_CellEditEnding" ScrollViewer.CanContentScroll="True">
                             <DataGrid.Resources>
                                 <Style TargetType="{x:Type DataGridColumnHeader}">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -260,7 +261,7 @@
                             </DataGrid.Resources>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Sửa" Width="60" IsReadOnly="True"/>
-                                <DataGridTextColumn Header="Mã công ty" IsReadOnly="True" Width="120" Binding="{Binding MaCongTy}"/>
+                                <DataGridTextColumn Header="Mã công ty" IsReadOnly="True" Width="*" Binding="{Binding MaCongTy}"/>
                                 <DataGridTextColumn Header="Tên công ty" Width="340" Binding="{Binding TenCongTy}"/>
                                 <DataGridTextColumn Header="Địa chỉ website" Width="280"  Binding="{Binding DiaChiWeb}"/>
                                 <DataGridTextColumn Header="Trụ sở" Width="256" Binding="{Binding DiaChiTruSo}"/>

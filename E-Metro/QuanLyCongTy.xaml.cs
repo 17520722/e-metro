@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace E_Metro
 {
@@ -113,7 +114,8 @@ namespace E_Metro
         }
 
         private void suaCongTy_dataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
-        {   
+        {
+            Console.WriteLine(sdt_txt.Text);
             viewModel.UpdateCongTy(e, suaCongTy_dataGrid);
         }
 
@@ -168,6 +170,10 @@ namespace E_Metro
 
         }
 
-       
+        private void sdt_txt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
     }
 }
