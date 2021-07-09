@@ -28,7 +28,7 @@ namespace E_Metro.ViewModel
         public CongTyViewModel()
         {
             listCongTy = new ObservableCollection<CongTy>();
-            MySqlLoadDataCongTy();  
+            MySqlLoadDataCongTy();
             AddCommand = new RelayCommand<UIElementCollection>((p) => true, InputAddCongTy);
             SearchCommand = new RelayCommand<UIElementCollection>((p) => true, InputSearchCongTy);
         }
@@ -67,7 +67,7 @@ namespace E_Metro.ViewModel
             }
             AddCongTy(maCongTy, tenCongTy, diaChiWeb, diaChiTruSo, sdt);
         }
-        
+
         public int AddCongTy(String maCongTy, String tenCongTy, String diaChiWeb, String diaChiTruSo, String sdt)
         {
             if (string.IsNullOrEmpty(maCongTy) || string.IsNullOrEmpty(tenCongTy) || string.IsNullOrEmpty(diaChiWeb) ||
@@ -93,8 +93,8 @@ namespace E_Metro.ViewModel
             Console.WriteLine("Hello 000000000000000");
             MySqlAddCongTy(cty);
             return 1;
-        }         
-        
+        }
+
         public void InputSearchCongTy(UIElementCollection p)
         {
             String searchTextCongTy = "";
@@ -116,9 +116,9 @@ namespace E_Metro.ViewModel
             }
             SearchCongTy(searchTextCongTy);
         }
-        
+
         public int SearchCongTy(String searchTextCongTy)
-        {     
+        {
             if (searchTextCongTy == "Bạn cần gì..." || string.IsNullOrEmpty(searchTextCongTy))
             {
                 MySqlLoadDataCongTy();
@@ -213,7 +213,7 @@ namespace E_Metro.ViewModel
                 }
             }
         }
-        
+
         public int MySqlAddCongTy(CongTy congTy)
         {
             using (con)
@@ -226,7 +226,7 @@ namespace E_Metro.ViewModel
                     using (var command = con.CreateCommand())
                     {
                         command.CommandText = "insert into CongTy(maCongTy, tenCongTy, diaChiWeb, diaChiTruSo, sdt) " +
-                            "values ('" + congTy.MaCongTy + "', N'" + congTy.TenCongTy + "', '" + congTy.DiaChiWeb + "', '" + 
+                            "values ('" + congTy.MaCongTy + "', N'" + congTy.TenCongTy + "', '" + congTy.DiaChiWeb + "', '" +
                             congTy.DiaChiTruSo + "', '" + congTy.Sdt + "')";
 
                         var reader = command.ExecuteReader();
@@ -248,7 +248,7 @@ namespace E_Metro.ViewModel
                 }
             }
         }
-        
+
         public int MySqlUpdateCongTy(CongTy congTy)
         {
             using (con)
@@ -263,6 +263,7 @@ namespace E_Metro.ViewModel
                         command.CommandText = "update CongTy set tenCongTy = '" + congTy.TenCongTy + "', diaChiWeb = '" + congTy.DiaChiWeb + "', diaChiTruSo = '" + congTy.DiaChiTruSo + "', sdt = '" + congTy.Sdt + "' where maCongTy = '" + congTy.MaCongTy + "'";
 
                         var reader = command.ExecuteReader();
+
                     }
                     return 1;
                 }

@@ -250,6 +250,7 @@ D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\ro\Xceed.Wpf.Aval
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\obj\Debug\E-Metro.csprojAssemblyReference.cache
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\obj\Debug\E-Metro.exe.config
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\obj\Debug\DangNhap.g.cs
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\obj\Debug\MainWindow.g.cs
@@ -284,4 +285,11 @@ D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\nunit.engine.core
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\testcentric.engine.metadata.dll
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\nunit.framework.dll
 D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\bin\Debug\nunit.framework.xml
-D:\Study\PhatTrienVanHanhBTPM\Project\metro3\E-Metro\obj\Debug\E-Metro.csprojAssemblyReference.cache
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\NUnit3.TestAdapter.dll
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\NUnit3.TestAdapter.pdb
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\nunit.engine.dll
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\nunit.engine.api.dll
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\nunit.engine.core.dll
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\testcentric.engine.metadata.dll
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\nunit.framework.dll
+D:\Study\PhatTrienVanHanhBTPM\Project\metro\E-Metro\bin\Debug\nunit.framework.xml
